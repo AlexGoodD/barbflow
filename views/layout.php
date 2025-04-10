@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbflow</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="/build/css/app.css">
+    <link rel="stylesheet" href="/build/css/base.css">
+    <link rel="stylesheet" href="/build/css/buttons.css">
+    <link rel="stylesheet" href="/build/css/components.css">
+    <link rel="stylesheet" href="/build/css/forms.css">
+    <link rel="stylesheet" href="/build/css/layout.css">
+    <link rel="stylesheet" href="/build/css/responsive.css">
+    <link rel="stylesheet" href="/build/css/typography.css">
+    <link rel="stylesheet" href="/build/css/utilities.css">
+
+
 </head>
 <body>
     <div class="contenedor-app">

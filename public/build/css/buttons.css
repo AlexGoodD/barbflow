@@ -1,0 +1,116 @@
+button,
+select {
+  text-transform: none;
+}
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+.boton {
+  background-color: #0da6f3;
+  padding: 1.5rem 4rem;
+  color: #fff;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 400;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 5rem 0;
+}
+
+.boton:hover {
+  background-color: #0a85c3;
+  cursor: pointer;
+}
+.boton-eliminar {
+  background-color: #cb0000;
+  padding: 1.5rem 4rem;
+  color: #fff;
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 400;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 5rem 0;
+}
+
+
+.tabs button {
+  background-color: #0da6f3;
+  border: none;
+  color: #fff;
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: background-color 300ms ease;
+}
+.tabs button:hover {
+  cursor: pointer;
+  background-color: #0a85c3;
+}
+.tabs button.actual {
+  background-color: #fff;
+  color: #0da6f3;
+}
+
+.paginacion button {
+  margin: 0 0 1rem 0;
+}
+
+
+.acciones {
+  margin-top: 5rem;
+}
+
+.acciones a {
+  color: #fff;
+  display: block;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.boton-eliminar:hover {
+  background-color: #980000;
+  cursor: pointer;
+}
+
+.servicios .acciones {
+  margin: 0;
+}
+.servicios .boton,
+.servicios .boton-eliminar {
+  margin: 0;
+}
+

@@ -1,0 +1,24 @@
+.contenedor {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contenedor-app {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 100vh;
+}
+
+.contenedor-app .imagen {
+  background-image: url(../img/1.jpg);
+  background-size: cover;
+  background-position: center center;
+  height: 20rem;
+}
+
+.contenedor-app .app {
+  width: 95%;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
