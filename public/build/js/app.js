@@ -38,25 +38,41 @@ function tabs() {
   });
 }
 function botonesPaginador() {
-  const e = document.querySelector("#anterior"),
-    t = document.querySelector("#siguiente");
-  1 === paso
-    ? (e.classList.add("ocultar"), t.classList.remove("ocultar"))
-    : 3 === paso
-    ? (e.classList.remove("ocultar"),
-      t.classList.add("ocultar"),
-      mostrarResumen())
-    : (e.classList.remove("ocultar"), t.classList.remove("ocultar")),
-    mostrarSeccion();
+  const botonAnterior = document.querySelector(".step-move #anterior");
+  const botonSiguiente = document.querySelector(".step-move #siguiente");
+
+  if (paso === 1) {
+    botonAnterior.classList.add("ocultar");
+    botonSiguiente.classList.remove("ocultar");
+  } else if (paso === 3) {
+    botonAnterior.classList.remove("ocultar");
+    botonSiguiente.classList.add("ocultar");
+    mostrarResumen();
+  } else {
+    botonAnterior.classList.remove("ocultar");
+    botonSiguiente.classList.remove("ocultar");
+  }
+
+  mostrarSeccion();
 }
+
 function paginaAnterior() {
-  document.querySelector("#anterior").addEventListener("click", function () {
-    paso <= pasoInicial || (paso--, botonesPaginador());
+  const botonAnterior = document.querySelector(".step-move #anterior");
+  botonAnterior.addEventListener("click", function () {
+    if (paso > 1) {
+      paso--;
+      botonesPaginador();
+    }
   });
 }
+
 function paginaSiguiente() {
-  document.querySelector("#siguiente").addEventListener("click", function () {
-    paso >= pasoFinal || (paso++, botonesPaginador());
+  const botonSiguiente = document.querySelector(".step-move #siguiente");
+  botonSiguiente.addEventListener("click", function () {
+    if (paso < 3) {
+      paso++;
+      botonesPaginador();
+    }
   });
 }
 async function consultarAPI() {
@@ -69,22 +85,55 @@ async function consultarAPI() {
   }
 }
 function mostrarServicios(e) {
-  e.forEach((e) => {
-    const { id: t, nombre: o, precio: a } = e,
-      n = document.createElement("P");
-    n.classList.add("nombre-servicio"), (n.textContent = o);
-    const c = document.createElement("P");
-    c.classList.add("precio-servicio"), (c.textContent = `$${a}`);
-    const r = document.createElement("DIV");
-    r.classList.add("servicio"),
-      (r.dataset.idServicio = t),
-      (r.onclick = function () {
-        seleccionarServicio(e);
-      }),
-      r.appendChild(n),
-      r.appendChild(c),
-      document.querySelector("#servicios").appendChild(r);
+  const tabla = document.createElement("TABLE");
+  tabla.classList.add("tabla-servicios");
+
+  const encabezado = document.createElement("THEAD");
+  encabezado.innerHTML = `
+    <tr>
+      <th>Servicio</th>
+      <th>Duración</th>
+      <th>Precio</th>
+      <th></th>
+    </tr>
+  `;
+  tabla.appendChild(encabezado);
+
+  const cuerpo = document.createElement("TBODY");
+
+  e.forEach((servicio) => {
+    const { id, nombre, duracion, precio } = servicio;
+
+    const fila = document.createElement("TR");
+    fila.dataset.idServicio = id;
+
+    const celdaNombre = document.createElement("TD");
+    celdaNombre.textContent = nombre;
+
+    const celdaDuracion = document.createElement("TD");
+    celdaDuracion.textContent = `${duracion} minutos`;
+
+    const celdaPrecio = document.createElement("TD");
+    celdaPrecio.textContent = `$${precio}`;
+
+    const celdaAccion = document.createElement("TD");
+    const botonAñadir = document.createElement("BUTTON");
+    botonAñadir.textContent = "Añadir";
+    botonAñadir.classList.add("boton", "boton-añadir");
+    botonAñadir.onclick = function () {
+      seleccionarServicio(servicio);
+    };
+    celdaAccion.appendChild(botonAñadir);
+
+    fila.appendChild(celdaNombre);
+    fila.appendChild(celdaDuracion);
+    fila.appendChild(celdaPrecio);
+    fila.appendChild(celdaAccion);
+    cuerpo.appendChild(fila);
   });
+
+  tabla.appendChild(cuerpo);
+  document.querySelector("#servicios").appendChild(tabla);
 }
 function seleccionarServicio(e) {
   const { id: t } = e,

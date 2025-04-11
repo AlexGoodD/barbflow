@@ -29,6 +29,9 @@
   background-color: #329f00;
 }
 
-.paginacion {
-  padding: 5rem 0;
+.step-move {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
 }

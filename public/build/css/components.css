@@ -38,43 +38,6 @@
   text-align: center;
 }
 
-.listado-servicios {
-  display: grid;
-  gap: 2rem;
-}
-
-.listado-servicios .servicio {
-  background-color: #fff;
-  padding: 3rem;
-  border-radius: 1rem;
-  transition: transform 300ms;
-  text-align: center;
-}
-
-.listado-servicios .servicio.seleccionado {
-  background-color: #0da6f3;
-}
-
-.listado-servicios .servicio.seleccionado p {
-  color: #fff;
-}
-
-.listado-servicios .servicio:hover {
-  transform: scale(1.1);
-}
-
-.listado-servicios .servicio p {
-  color: #1a1b15;
-  margin: 0 0 1.25rem 0;
-}
-
-.listado-servicios .servicio .precio-servicio {
-  color: #0da6f3;
-  font-weight: 700;
-  font-size: 3rem;
-  margin: 0;
-}
-
 .contenido-resumen p {
   margin-bottom: 1rem;
 }
@@ -118,8 +81,4 @@
 .servicios li .servicio {
   font-weight: 400;
   color: #fff;
-}
-
-.tabs {
-  display: flex;
 }

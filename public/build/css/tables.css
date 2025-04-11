@@ -1,0 +1,63 @@
+.tabla-servicios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.tabla-servicios thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-servicios thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 1rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
+
+.tabla-servicios tbody {
+  display: block;
+  max-height: 400px;
+  overflow-y: auto;
+  border-top: 1px solid #ffffff82;
+
+}
+
+.tabla-servicios tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.tabla-servicios td {
+  padding: 0 1rem;
+  text-align: center;
+  height: 7rem;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.tabla-servicios th:nth-child(1),
+.tabla-servicios td:nth-child(1),
+.tabla-servicios th:nth-child(2),
+.tabla-servicios td:nth-child(2) {
+  width: 30%;
+}
+
+.tabla-servicios th:nth-child(3),
+.tabla-servicios td:nth-child(3) {
+  width: 20%;
+}
+
+.tabla-servicios th:nth-child(4),
+.tabla-servicios td:nth-child(4) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
