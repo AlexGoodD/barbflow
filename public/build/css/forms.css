@@ -4,20 +4,41 @@
 }
 .campo {
   display: flex;
-  margin-bottom: 2rem;
-  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5rem;
+
 }
 .campo label {
-  flex: 0 0 10rem;
+  color: #fff;
+  margin-bottom: 2rem;
+font-weight: 500;
+
 }
 .campo input {
   flex: 1;
-  border: none;
+  border: 2px solid #898989;
   padding: 1.25rem;
   border-radius: 1rem;
+  color: #fff;
+  background-color: #454545;
 }
 .campo input:disabled {
-  background-color: #6d7158;
-  color: #fff;
+  background-color: #454545;
+  color: #ffffff8b;
   cursor: not-allowed;
+}
+
+.campos-contacto {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre-completo {
+  display: flex;
+  gap: 2rem;
+}
+
+.nombre-completo .campo {
+  width: 100%;
 }

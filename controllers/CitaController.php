@@ -13,6 +13,8 @@ class CitaController {
 
         $router->render('cita/index', [
             'nombre' => $_SESSION['nombre'],
+            'apellido' => $_SESSION['apellido'],
+            'email' => $_SESSION['email'],
             'id' => $_SESSION['id']
         ]);
     }

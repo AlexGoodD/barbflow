@@ -17,4 +17,12 @@
   background-color: #1c1c1c;
   border-radius: 10px;
   box-sizing: border-box;
+/*   overflow: hidden;
+ */}
+
+.contenedor-resumen {
+  padding: 0 4rem;
+  height: 50rem;
+  overflow: scroll;
+  overflow-x: hidden
 }

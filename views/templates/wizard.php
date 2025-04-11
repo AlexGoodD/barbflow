@@ -14,4 +14,9 @@
         type="button" 
         data-paso="3">
     </button>
+    <button 
+        class="<?= $pasoActual === 4 ? 'actual' : ($pasoActual > 4 ? 'completado' : '') ?>" 
+        type="button" 
+        data-paso="4">
+    </button>
 </nav>

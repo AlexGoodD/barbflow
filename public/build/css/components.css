@@ -38,25 +38,6 @@
   text-align: center;
 }
 
-.contenido-resumen p {
-  margin-bottom: 1rem;
-}
-
-.contenido-resumen span {
-  color: #0da6f3;
-  font-weight: 700;
-  font-size: 2.4rem;
-}
-
-.contenedor-servicio {
-  padding: 3rem 0;
-  border-bottom: 1px solid #e1e1e1;
-}
-
-.contenedor-servicio:last-of-type {
-  margin-bottom: 5rem;
-}
-
 .citas,
 .servicios {
   list-style: none;

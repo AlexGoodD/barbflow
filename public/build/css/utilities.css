@@ -24,7 +24,6 @@
 .alerta.error {
   background-color: #cb0000;
 }
-
 .alerta.exito {
   background-color: #329f00;
 }
@@ -35,3 +34,9 @@
   justify-content: space-between;
   padding: 1rem;
 }
+
+
+.resumen-error {
+  background-color: red;
+}
+

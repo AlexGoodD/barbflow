@@ -1,13 +1,29 @@
+<?php
+// Initialize $pasoActual with a default value
+$pasoActual = 1; // Default to sep 1
+?>
 <div id="app">
-   
+    <div class="step-move">
+        <button id="anterior" class="boton">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <h1 class="nombre-pagina">Escoge el servicio</h1>
+        <button id="siguiente" class="boton">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <div id="paso-1" class="seccion">
-        <?php include __DIR__ . '/c_servicio.php'; ?>
+        <?php $pasoActual = 1; include __DIR__ . '/c_servicio.php'; ?>
     </div>
     <div id="paso-2" class="seccion">
-        <?php include __DIR__ . '/c_fecha.php'; ?>
+        <?php $pasoActual = 2; include __DIR__ . '/c_fecha.php'; ?>
     </div>
     <div id="paso-3" class="seccion">
-        <?php include __DIR__ . '/c_resumen.php'; ?>
+        <?php $pasoActual = 3; include __DIR__ . '/c_contacto.php'; ?>
+    </div>
+    <div id="paso-4" class="seccion">
+        <?php $pasoActual = 4; include __DIR__ . '/c_resumen.php'; ?>
     </div>
 </div>
 
