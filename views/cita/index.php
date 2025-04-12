@@ -40,6 +40,6 @@ function appjs($path)
 
 $script = "
 <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script src='" . appjs('/build/js/app.js') . "'></script>
+<script type='module' src='" . appjs('/build/js/app.js') . "'></script>
 ";
 ?>

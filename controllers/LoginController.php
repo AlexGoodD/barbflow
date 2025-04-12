@@ -27,6 +27,7 @@ class LoginController {
                         $_SESSION['id'] = $usuario->id;
                         $_SESSION['nombre'] = $usuario->nombre ;
                         $_SESSION['apellido'] = $usuario->apellido ;
+                        $_SESSION['email'] = $usuario->email ;
                         $_SESSION['login'] = true;
 
                         // Redireccionamiento
@@ -159,7 +160,7 @@ class LoginController {
                     $usuario->crearToken();
 
                     // Enviar el Email
-                    $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
+                    $email = new Email($usuario->email, $usuario->nombre, $usuario->token);
                     $email->enviarConfirmacion();
 
                     // Crear el usuario

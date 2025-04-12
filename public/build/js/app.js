@@ -4,12 +4,14 @@ import {
   botonesPaginador,
   paginaSiguiente,
   paginaAnterior,
+  actualizarTituloPaso,
 } from "./navegacion.js";
 import {
   idCliente,
   nombreCliente,
   seleccionarFecha,
   seleccionarHora,
+  agregarBotonesReservar,
 } from "./cliente.js";
 import { mostrarResumen } from "./resumen.js";
 import { consultarAPI } from "./servicios.js";
@@ -26,10 +28,14 @@ function iniciarApp() {
     seleccionarFecha(),
     seleccionarHora(),
     mostrarResumen();
+    agregarBotonesReservar();
 }
 export let paso = 1;
-export const pasoInicial = 1,
-  pasoFinal = 4;
+
+export function setPaso(nuevoPaso) {
+  paso = nuevoPaso;
+}
+
 export const cita = { id: "", nombre: "", fecha: "", hora: "", servicios: [] };
 document.addEventListener("DOMContentLoaded", function () {
   iniciarApp();

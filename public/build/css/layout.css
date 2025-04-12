@@ -17,12 +17,13 @@
   background-color: #1c1c1c;
   border-radius: 10px;
   box-sizing: border-box;
-/*   overflow: hidden;
- */}
+  overflow: hidden;
+}
 
 .contenedor-resumen {
+  position: relative;
   padding: 0 4rem;
-  height: 50rem;
+  max-height: 40rem;
   overflow: scroll;
-  overflow-x: hidden
+  overflow-x: hidden;
 }

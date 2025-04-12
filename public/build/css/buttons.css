@@ -133,8 +133,10 @@ button:-moz-focusring,
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: sig 1.5s infinite;
   border: none;
 }
+
 .step-move button:hover {
   background-color: transparent;
 }
@@ -150,6 +152,8 @@ button:-moz-focusring,
   cursor: pointer;
   transform: scale(1.1);
 }
+
+
 .boton-añadido {
   background-color: white;
   color: #1C1C1C;
@@ -160,4 +164,65 @@ button:-moz-focusring,
   color: #1C1C1C;
 }
 
+.cancelar-reservar {
+  display: flex;
+  justify-content: end;
+  gap: 3rem;
+  margin-top: 3rem;
+}
 
+.btn-reservar {
+  background-color: #fff;
+  color: #454545;
+  padding: 1rem 2rem;
+  border: 1px solid #454545;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-reservar:hover {
+  background-color: #c8c8c8;
+}
+
+.btn-cancelar {
+  background-color: #1C1C1C;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: 1px solid #454545;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-cancelar:hover {
+  background-color: #6c6c6c;
+}
+
+.boton-desplazar {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.boton-desplazar .flecha {
+  display: inline-block;
+  margin-left: 0.5rem;
+  animation: rebote 1.5s infinite;
+  font-size: 1.2rem;
+}
+
+@keyframes rebote {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}

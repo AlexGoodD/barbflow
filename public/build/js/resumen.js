@@ -1,3 +1,8 @@
+import { APP_URL } from "./config.js";
+import { cita } from "./app.js";
+import { mostrarAlerta } from "./utils.js";
+import { agregarBotonesReservar } from "./cliente.js";
+
 export function mostrarResumen() {
   const e = document.querySelector(".contenido-resumen");
   while (e.firstChild) e.removeChild(e.firstChild);
@@ -11,26 +16,26 @@ export function mostrarResumen() {
     );
   }
 
-  const { nombre: t, fecha: o, hora: a, servicios: n } = cita;
+  // Agregar botón de reservar dentro del contenedor .app
+  agregarBotonesReservar();
+  agregarBotonDesplazamientoResumen();
 
-  // Crear encabezado "Resumen de Servicios"
-  const c = document.createElement("H3");
-  c.textContent = "Resumen de Servicios";
-  e.appendChild(c);
+  const { nombre: t, fecha: o, hora: a, servicios: n } = cita;
 
   // Crear tabla para servicios
   const tabla = document.createElement("TABLE");
   tabla.classList.add("tabla-servicios");
+  tabla.id = "tabla-servicios-resumen";
 
   // Encabezado de la tabla
   const encabezado = document.createElement("THEAD");
   encabezado.innerHTML = `
       <tr>
-        <th>Servicio</th>
-        <th>Precio</th>
+        <th colspan="2" class="encabezado-tabla">Servicios seleccionados</th>
       </tr>
     `;
   tabla.appendChild(encabezado);
+
 
   // Cuerpo de la tabla
   const cuerpo = document.createElement("TBODY");
@@ -44,9 +49,11 @@ export function mostrarResumen() {
 
     const celdaNombre = document.createElement("TD");
     celdaNombre.textContent = nombre;
+    celdaNombre.classList.add("columna-servicio");
 
     const celdaPrecio = document.createElement("TD");
     celdaPrecio.textContent = `$${precio} MXN`;
+    celdaPrecio.classList.add("columna-precio");
 
     fila.appendChild(celdaNombre);
     fila.appendChild(celdaPrecio);
@@ -64,10 +71,7 @@ export function mostrarResumen() {
   tabla.appendChild(cuerpo);
   e.appendChild(tabla);
 
-  // Crear encabezado "Resumen de Cita"
-  const r = document.createElement("H3");
-  r.textContent = "Resumen de Cita";
-  e.appendChild(r);
+  filaTotal.classList.add("fila-total");
 
   // Información de la cita
   const i = document.createElement("P");
@@ -84,16 +88,9 @@ export function mostrarResumen() {
   const v = document.createElement("P");
   v.innerHTML = `<span>Hora:</span> ${a} Horas`;
 
-  // Botón para reservar cita
-  const h = document.createElement("BUTTON");
-  h.classList.add("boton");
-  h.textContent = "Reservar Cita";
-  h.onclick = reservarCita;
-
   e.appendChild(i);
   e.appendChild(p);
   e.appendChild(v);
-  e.appendChild(h);
 }
 
 export async function reservarCita() {
@@ -112,8 +109,8 @@ export async function reservarCita() {
       o.resultado &&
         Swal.fire({
           icon: "success",
-          title: "Cita Creada",
-          text: "Tu cita fue creada correctamente",
+          title: "¡Reservación creada con éxito!",
+          text: "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado.",
           button: "OK",
         }).then(() => {
           setTimeout(() => {
@@ -123,8 +120,50 @@ export async function reservarCita() {
   } catch (e) {
     Swal.fire({
       icon: "error",
-      title: "Error",
-      text: "Hubo un error al guardar la cita",
+      title: "Hubo un error al reservar la cita",
+      text: "Intenta nuevamente más tarde",
     });
   }
+}
+
+function agregarBotonDesplazamientoResumen() {
+  const contenedorResumen = document.querySelector(".contenedor-resumen");
+
+  // Evitar múltiples botones
+  if (document.querySelector(".boton-desplazar")) return;
+
+  // Crear botón
+  const botonDesplazar = document.createElement("BUTTON");
+  botonDesplazar.innerHTML = `<span class="flecha">&#x2B07;</span>`;
+  botonDesplazar.classList.add("boton-desplazar");
+  contenedorResumen.appendChild(botonDesplazar);
+
+  // Hacer scroll al fondo
+  botonDesplazar.addEventListener("click", () => {
+    contenedorResumen.scrollTo({
+      top: contenedorResumen.scrollHeight,
+      behavior: "smooth",
+    });
+  });
+
+  // Mostrar/ocultar botón según la posición del scroll
+  contenedorResumen.addEventListener("scroll", () => {
+    const scrollTop = contenedorResumen.scrollTop;
+    const scrollHeight = contenedorResumen.scrollHeight;
+    const clientHeight = contenedorResumen.clientHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight) {
+      botonDesplazar.style.display = "none"; // Ocultar al llegar al fondo
+    } else {
+      botonDesplazar.style.display = "block"; // Mostrar en cualquier otra posición
+    }
+  });
+
+  // Mostrar solo si hay scroll
+  setTimeout(() => {
+    const hayScroll = contenedorResumen.scrollHeight > contenedorResumen.clientHeight;
+    if (hayScroll) {
+      botonDesplazar.style.display = "block";
+    }
+  }, 100);
 }

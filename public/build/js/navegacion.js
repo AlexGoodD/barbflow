@@ -1,3 +1,6 @@
+import { paso, setPaso } from "./app.js";
+import { mostrarResumen } from "./resumen.js";
+
 export function mostrarSeccion() {
   const e = document.querySelector(".mostrar");
   e && e.classList.remove("mostrar");
@@ -12,7 +15,7 @@ export function tabs() {
   document.querySelectorAll(".tabs button").forEach((e) => {
     e.addEventListener("click", function (e) {
       e.preventDefault();
-      paso = parseInt(e.target.dataset.paso);
+      setPaso(parseInt(e.target.dataset.paso)); 
       mostrarSeccion();
       botonesPaginador();
       actualizarTituloPaso();
@@ -20,7 +23,7 @@ export function tabs() {
   });
 }
 
-function botonesPaginador() {
+export function botonesPaginador() {
   const botonAnterior = document.querySelector(".step-move #anterior");
   const botonSiguiente = document.querySelector(".step-move #siguiente");
 
@@ -42,22 +45,28 @@ function botonesPaginador() {
 
 export function paginaAnterior() {
   const botonAnterior = document.querySelector(".step-move #anterior");
-  botonAnterior.addEventListener("click", function () {
-    if (paso > 1) {
-      paso--;
-      botonesPaginador();
-    }
-  });
+  botonAnterior.removeEventListener("click", handlePaginaAnterior); // Elimina cualquier evento previo
+  botonAnterior.addEventListener("click", handlePaginaAnterior); // Registra el evento
+}
+
+function handlePaginaAnterior() {
+  if (paso > 1) {
+    setPaso(paso - 1);
+    botonesPaginador();
+  }
 }
 
 export function paginaSiguiente() {
   const botonSiguiente = document.querySelector(".step-move #siguiente");
-  botonSiguiente.addEventListener("click", function () {
-    if (paso < 4) {
-      paso++;
-      botonesPaginador();
-    }
-  });
+  botonSiguiente.removeEventListener("click", handlePaginaSiguiente); // Elimina cualquier evento previo
+  botonSiguiente.addEventListener("click", handlePaginaSiguiente); // Registra el evento
+}
+
+function handlePaginaSiguiente() {
+  if (paso < 4) {
+    setPaso(paso + 1);
+    botonesPaginador();
+  }
 }
 
 export function actualizarTituloPaso() {

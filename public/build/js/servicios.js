@@ -1,9 +1,10 @@
 import { APP_URL } from "./config.js";
+import { cita } from "./app.js";
 
 export async function consultarAPI() {
   try {
     const e = `${APP_URL}/api/servicios`,
-      t = await fetch(e);
+    t = await fetch(e);
     mostrarServicios(await t.json());
   } catch (e) {
     console.log(e);
@@ -11,6 +12,11 @@ export async function consultarAPI() {
 }
 
 export function mostrarServicios(e) {
+  const contenedorServicios = document.querySelector("#servicios");
+  
+  // Limpiar contenido previo
+  contenedorServicios.innerHTML = "";
+
   const tabla = document.createElement("TABLE");
   tabla.classList.add("tabla-servicios");
 
@@ -26,6 +32,7 @@ export function mostrarServicios(e) {
   tabla.appendChild(encabezado);
 
   const cuerpo = document.createElement("TBODY");
+
 
   e.forEach((servicio) => {
     const { id, nombre, duracion, precio } = servicio;
@@ -59,7 +66,8 @@ export function mostrarServicios(e) {
   });
 
   tabla.appendChild(cuerpo);
-  document.querySelector("#servicios").appendChild(tabla);
+  contenedorServicios.appendChild(tabla);
+
 }
 
 export function seleccionarServicio(e) {

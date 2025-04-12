@@ -61,3 +61,23 @@
   align-items: center;
   justify-content: center;
 }
+
+.columna-servicio {
+  text-align: left;
+}
+
+.columna-precio {
+  text-align: right;
+}
+
+.tabla-servicios .fila-total {
+  border-top: 1px solid #ffffff82;
+}
+
+#tabla-servicios-resumen tbody {
+  display: block;
+  max-height: 100%;
+  overflow: hidden;
+  border-top: 1px solid #ffffff82;
+
+}
