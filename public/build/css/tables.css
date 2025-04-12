@@ -81,3 +81,14 @@
   border-top: 1px solid #ffffff82;
 
 }
+
+.encabezado-resumen {
+  display: flex;
+  justify-content: start;
+  text-align: left;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  width: 100%;
+}

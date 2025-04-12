@@ -153,6 +153,32 @@ button:-moz-focusring,
   transform: scale(1.1);
 }
 
+.step-move #anterior {
+  animation: ant 1.5s infinite;
+}
+
+.step-move #siguiente {
+  animation: sig 1.5s infinite;
+}
+
+@keyframes ant {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+
+@keyframes sig {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
 
 .boton-añadido {
   background-color: white;

@@ -20,7 +20,12 @@ export function mostrarResumen() {
   agregarBotonesReservar();
   agregarBotonDesplazamientoResumen();
 
-  const { nombre: t, fecha: o, hora: a, servicios: n } = cita;
+  mostrarResumenServicios(e);
+  mostrarResumenDetalles(e);
+}
+
+function mostrarResumenServicios(contenedor) {
+  const { servicios: n } = cita;
 
   // Crear tabla para servicios
   const tabla = document.createElement("TABLE");
@@ -31,11 +36,10 @@ export function mostrarResumen() {
   const encabezado = document.createElement("THEAD");
   encabezado.innerHTML = `
       <tr>
-        <th colspan="2" class="encabezado-tabla">Servicios seleccionados</th>
+    <th colspan="2" class="encabezado-tabla encabezado-resumen">Servicios seleccionados</th>
       </tr>
     `;
   tabla.appendChild(encabezado);
-
 
   // Cuerpo de la tabla
   const cuerpo = document.createElement("TBODY");
@@ -69,13 +73,21 @@ export function mostrarResumen() {
   cuerpo.appendChild(filaTotal);
 
   tabla.appendChild(cuerpo);
-  e.appendChild(tabla);
+  contenedor.appendChild(tabla);
 
   filaTotal.classList.add("fila-total");
+}
 
-  // Información de la cita
+function mostrarResumenDetalles(contenedor) {
+  const { nombre: t, fecha: o, hora: a, duracion: d } = cita;
+
+  const tituloResumen = document.createElement("P");
+  tituloResumen.textContent = "Detalles de tu cita"; 
+  tituloResumen.classList.add("encabezado-resumen");
+  contenedor.appendChild(tituloResumen);
+
   const i = document.createElement("P");
-  i.innerHTML = `<span>Nombre:</span> ${t}`;
+  i.innerHTML = `<span>Cliente:</span> ${t}`;
   const s = new Date(o);
   const m = s.toLocaleDateString("es-MX", {
     weekday: "long",
@@ -88,9 +100,9 @@ export function mostrarResumen() {
   const v = document.createElement("P");
   v.innerHTML = `<span>Hora:</span> ${a} Horas`;
 
-  e.appendChild(i);
-  e.appendChild(p);
-  e.appendChild(v);
+  contenedor.appendChild(i);
+  contenedor.appendChild(p);
+  contenedor.appendChild(v);
 }
 
 export async function reservarCita() {
@@ -161,7 +173,8 @@ function agregarBotonDesplazamientoResumen() {
 
   // Mostrar solo si hay scroll
   setTimeout(() => {
-    const hayScroll = contenedorResumen.scrollHeight > contenedorResumen.clientHeight;
+    const hayScroll =
+      contenedorResumen.scrollHeight > contenedorResumen.clientHeight;
     if (hayScroll) {
       botonDesplazar.style.display = "block";
     }
