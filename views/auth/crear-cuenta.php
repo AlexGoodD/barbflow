@@ -1,5 +1,4 @@
-<h1 class="nombre-pagina">Crear Cuenta</h1>
-<p class="descripcion-pagina">Llena el siguiente el formulario para crear una cuenta</p>
+<h1 class="nombre-pagina">Registro</h1>
 
 <?php 
     include_once __DIR__ . "/../templates/alertas.php";
@@ -8,7 +7,7 @@
 <form class="formulario" method="POST" action="/crear-cuenta">
   
     <div class="campo">
-        <label for="nombre">Nombre</label>
+        <label for="nombre">Nombre(s)</label>
         <input
             type="text"
             id="nombre"
@@ -19,7 +18,7 @@
     </div>
 
     <div class="campo">
-        <label for="apellido">Apellido</label>
+        <label for="apellido">Apellido(s)</label>
         <input
             type="text"
             id="apellido"
@@ -41,7 +40,7 @@
     </div>
 
     <div class="campo">
-        <label for="email">E-mail</label>
+        <label for="email">Correo electrónico</label>
         <input
             type="email"
             id="email"
@@ -52,7 +51,7 @@
     </div>
 
     <div class="campo">
-        <label for="password">Password</label>
+        <label for="password">Contraseña</label>
         <input
             type="password"
             id="password"
@@ -61,12 +60,12 @@
         />
     </div>
 
-    <input type="submit" value="Crear Cuenta" class="boton">
+    <input type="submit" value="Registrarme" class="boton-registro">
 
 
 </form>
 
 <div class="acciones">
-    <a href="/">¿Ya tienes una cuenta? Inicia Sesión</a>
-    <a href="/olvide">¿Olvidaste tu password?</a>
+    <a href="/" class="iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
+    <a href="/olvide" class="olvide-contraseña">¿Olvidaste tu contraseña?</a>
 </div>

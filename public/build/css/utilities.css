@@ -40,3 +40,50 @@
   background-color: red;
 }
 
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0F0F0F;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  height: 7rem;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+}
+
+.navbar-item {
+  margin: 1rem 1.5rem;
+  color: #818181;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-item:hover {
+  color: #c8c8c8;
+}
+
+#navbar-item-reservacion {
+  color: #fff;
+  padding: 1rem;
+  font-weight: 600;
+  background-color: #8181817d;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#navbar-item-reservacion:hover {
+  background-color: #818181;
+}

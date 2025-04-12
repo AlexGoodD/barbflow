@@ -1,48 +1,46 @@
-button,
-select {
-  text-transform: none;
-}
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  -webkit-appearance: button;
-  appearance: button;
-}
-button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
-  border-style: none;
-  padding: 0;
-}
-button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
-}
-.boton {
-  background-color: #0da6f3;
+
+.boton-login {
+  background-color: #fff;
   padding: 1.5rem 4rem;
-  color: #fff;
-  margin-top: 2rem;
+  color: #454545;
   font-size: 2rem;
-  font-weight: 400;
-  display: inline-block;
   font-weight: 700;
-  border: none;
-  transition-property: background-color;
-  transition-duration: 0.3s;
+  border-radius: 1rem;
   text-align: center;
   display: block;
   width: 100%;
   margin: 5rem 0;
+  border: 1px solid #454545;
+  transition: all 0.3s ease-in-out;
 }
-.boton:hover {
-  background-color: #0a85c3;
+
+.boton-login:hover {
+  background-color: #c8c8c8;
   cursor: pointer;
 }
+
+.boton-registro {
+  background-color: #fff;
+  padding: 1.5rem 4rem;
+  color: #454545;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  text-align: center;
+  display: block;
+  width: 100%;
+  margin: 5rem 0;
+  border: 1px solid #454545;
+  transition: all 0.3s ease-in-out;
+}
+
+.boton-registro:hover {
+  background-color: #c8c8c8;
+  cursor: pointer;
+}
+
+
+
 .boton-eliminar {
   background-color: #cb0000;
   padding: 1.5rem 4rem;
@@ -61,14 +59,41 @@ button:-moz-focusring,
   margin: 5rem 0;
 }
 .acciones {
+  display: flex;
+  justify-content: space-between;
   margin-top: 5rem;
+  margin-bottom: 7rem;
 }
-.acciones a {
+
+.acciones .crear-cuenta {
   color: #fff;
-  display: block;
-  margin-bottom: 2.5rem;
-  text-align: center;
+  text-decoration: none;
 }
+
+.acciones .crear-cuenta:hover {
+  text-decoration: underline;
+}
+
+.acciones .olvide-contraseña {
+  color: #fff;
+  opacity: 0.3;
+  text-decoration: underline;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.acciones .olvide-contraseña:hover {
+  opacity: 0.6;
+}
+
+.acciones .iniciar-sesion {
+  color: #fff;
+  text-decoration: none;
+}
+
+.acciones .iniciar-sesion:hover {
+  text-decoration: underline;
+}
+
 .boton-eliminar:hover {
   background-color: #980000;
   cursor: pointer;

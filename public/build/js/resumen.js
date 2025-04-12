@@ -79,15 +79,23 @@ function mostrarResumenServicios(contenedor) {
 }
 
 function mostrarResumenDetalles(contenedor) {
-  const { nombre: t, fecha: o, hora: a, duracion: d } = cita;
+  const { nombre: t, fecha: o, hora: a } = cita;
 
   const tituloResumen = document.createElement("P");
   tituloResumen.textContent = "Detalles de tu cita"; 
   tituloResumen.classList.add("encabezado-resumen");
   contenedor.appendChild(tituloResumen);
 
-  const i = document.createElement("P");
-  i.innerHTML = `<span>Cliente:</span> ${t}`;
+  // Crear contenedor para la información adicional
+  const contenedorInfo = document.createElement("DIV");
+  contenedorInfo.classList.add("contenedor-resumen-info");
+
+  // Cliente
+  const cliente = document.createElement("P");
+  cliente.innerHTML = `<span class="info-resumen">Cliente: </span><span class="resumen-info-valor">${t}</span>`;
+  contenedorInfo.appendChild(cliente);
+
+  // Fecha
   const s = new Date(o);
   const m = s.toLocaleDateString("es-MX", {
     weekday: "long",
@@ -95,14 +103,17 @@ function mostrarResumenDetalles(contenedor) {
     month: "long",
     day: "numeric",
   });
-  const p = document.createElement("P");
-  p.innerHTML = `<span>Fecha:</span> ${m}`;
-  const v = document.createElement("P");
-  v.innerHTML = `<span>Hora:</span> ${a} Horas`;
+  const fecha = document.createElement("P");
+  fecha.innerHTML = `<span class="info-resumen">Fecha: </span><span class="resumen-info-valor">${m}</span>`;
+  contenedorInfo.appendChild(fecha);
 
-  contenedor.appendChild(i);
-  contenedor.appendChild(p);
-  contenedor.appendChild(v);
+  // Hora
+  const hora = document.createElement("P");
+  hora.innerHTML = `<span class="info-resumen">Hora: </span><span class="resumen-info-valor">${a} Horas</span>`;
+  contenedorInfo.appendChild(hora);
+
+  // Agregar contenedor de información al contenedor principal
+  contenedor.appendChild(contenedorInfo);
 }
 
 export async function reservarCita() {
