@@ -1,5 +1,5 @@
 import { cita } from "./app.js";
-import { mostrarAlerta } from "./utils.js";
+import { mostrarHelperAlerta } from "./utils.js";
 import { reservarCita } from "./resumen.js";
 
 export function idCliente() {
@@ -14,9 +14,9 @@ export function seleccionarFecha() {
   document.querySelector("#fecha").addEventListener("input", function (e) {
     const t = new Date(e.target.value).getUTCDay();
     [6, 0].includes(t)
-      ? ((e.target.value = ""),
-        mostrarAlerta("Fines de semana no permitidos", "error", ".formulario"))
-      : (cita.fecha = e.target.value);
+    ? ((e.target.value = ""),
+    mostrarHelperAlerta("Fines de semana no permitidos", "error", "#fecha"))
+    : (cita.fecha = e.target.value);
   });
 }
 
@@ -25,7 +25,7 @@ export function seleccionarHora() {
     const t = e.target.value.split(":")[0];
     t < 10 || t > 18
       ? ((e.target.value = ""),
-        mostrarAlerta("Hora No Válida", "error", ".formulario"))
+      mostrarHelperAlerta("Fuera del horario del establecimiento", "error", "#hora"))
       : (cita.hora = e.target.value);
   });
 }

@@ -12,11 +12,11 @@ export async function consultarAPI() {
 }
 
 export function mostrarServicios(e) {
+  
   const contenedorServicios = document.querySelector("#servicios");
   
   // Limpiar contenido previo
   contenedorServicios.innerHTML = "";
-
   const tabla = document.createElement("TABLE");
   tabla.classList.add("tabla-servicios");
 
@@ -89,11 +89,6 @@ export function seleccionarServicio(e) {
     botonAñadir.textContent = "Añadido";
     botonAñadir.classList.add("boton-añadido");
   }
-
-  // Mostrar alerta de Shoelace
-  const alerta = document.querySelector("#alerta-seleccion");
-  alerta.textContent = `Hola, seleccionaste el servicio: ${e.nombre}`;
-  alerta.show();
 }
 
 export async function mostrarPrecios() {

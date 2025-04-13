@@ -7,14 +7,14 @@ export function mostrarResumen() {
   const e = document.querySelector(".contenido-resumen");
   while (e.firstChild) e.removeChild(e.firstChild);
 
-  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
+ /*  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
     return mostrarAlerta(
       "Necesitas completar los pasos anteriores para ver un resumen de tu cita.",
       "resumen-error",
       ".contenido-resumen",
       false
     );
-  }
+  } */
 
   // Agregar botón de reservar dentro del contenedor .app
   agregarBotonesReservar();
@@ -128,24 +128,25 @@ export async function reservarCita() {
     const e = `${APP_URL}/api/citas`,
       t = await fetch(e, { method: "POST", body: r }),
       o = await t.json();
-    console.log(o),
+      console.log(o),
       o.resultado &&
-        Swal.fire({
-          icon: "success",
-          title: "¡Reservación creada con éxito!",
-          text: "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado.",
-          button: "OK",
-        }).then(() => {
-          setTimeout(() => {
-            window.location.reload();
-          }, 3e3);
-        });
+        mostrarAlerta(
+          "¡Reservación creada con éxito! Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado.",
+          "success",
+          ".contenido-resumen"
+        );
+
+    if (o.resultado) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
   } catch (e) {
-    Swal.fire({
-      icon: "error",
-      title: "Hubo un error al reservar la cita",
-      text: "Intenta nuevamente más tarde",
-    });
+    mostrarAlerta(
+      "Hubo un error al reservar la cita. Intenta nuevamente más tarde.",
+      "danger",
+      ".contenido-resumen"
+    );
   }
 }
 
