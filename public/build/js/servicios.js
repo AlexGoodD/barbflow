@@ -89,4 +89,59 @@ export function seleccionarServicio(e) {
     botonAñadir.textContent = "Añadido";
     botonAñadir.classList.add("boton-añadido");
   }
+
+  // Mostrar alerta de Shoelace
+  const alerta = document.querySelector("#alerta-seleccion");
+  alerta.textContent = `Hola, seleccionaste el servicio: ${e.nombre}`;
+  alerta.show();
+}
+
+export async function mostrarPrecios() {
+  try {
+    const response = await fetch(`${APP_URL}/api/servicios`);
+    const servicios = await response.json();
+
+    const contenedorPrecios = document.querySelector(".precios .info-left");
+
+    // Limpiar contenido previo
+    contenedorPrecios.innerHTML = "";
+
+    servicios.forEach((servicio, index) => {
+      const { nombre, descripcion, precio } = servicio;
+    
+      // Crear el contenedor del servicio
+      const divServicio = document.createElement("div");
+      divServicio.classList.add(`precio-item-${index + 1}`);
+    
+      // Crear y agregar el nombre del servicio
+      const pNombre = document.createElement("p");
+      pNombre.classList.add("servicio-nombre");
+      pNombre.textContent = nombre;
+    
+      // Crear y agregar el precio del servicio
+      const pPrecio = document.createElement("p");
+      pPrecio.classList.add("servicio-precio");
+      pPrecio.textContent = `$${precio} MXN`;
+    
+      // Crear el contenedor del encabezado (nombre y precio)
+      const divHeaderPrecio = document.createElement("div");
+      divHeaderPrecio.classList.add("headerPrecio");
+      divHeaderPrecio.appendChild(pNombre);
+      divHeaderPrecio.appendChild(pPrecio);
+    
+      // Agregar el encabezado al contenedor del servicio
+      divServicio.appendChild(divHeaderPrecio);
+    
+      // Crear y agregar la descripción del servicio
+      const pDescripcion = document.createElement("p");
+      pDescripcion.classList.add("servicio-descripcion");
+      pDescripcion.textContent = descripcion;
+      divServicio.appendChild(pDescripcion);
+    
+      // Agregar el servicio al contenedor principal
+      contenedorPrecios.appendChild(divServicio);
+    });
+  } catch (error) {
+    console.error("Error al cargar los precios:", error);
+  }
 }

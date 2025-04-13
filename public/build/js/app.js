@@ -14,7 +14,7 @@ import {
   agregarBotonesReservar,
 } from "./cliente.js";
 import { mostrarResumen } from "./resumen.js";
-import { consultarAPI } from "./servicios.js";
+import { consultarAPI, mostrarPrecios } from "./servicios.js";
 function iniciarApp() {
   mostrarSeccion(),
     tabs(),

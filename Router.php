@@ -16,16 +16,30 @@ class Router
     }
 
     public function comprobarRutas() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $currentUrl = explode('?', $_SERVER['REQUEST_URI'])[0] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
-
+    
+        // Redirigir si el usuario está autenticado y accede a '/'
+        if ($currentUrl === '/' && isset($_SESSION['login'])) {
+            if (isset($_SESSION['admin']) && $_SESSION['admin'] === "1") {
+                header('Location: /admin');
+                exit;
+            } else {
+                header('Location: /cita');
+                exit;
+            }
+        }
+    
         if ($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
-
-        if ( $fn ) {
+    
+        if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {

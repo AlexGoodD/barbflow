@@ -66,6 +66,6 @@
 </form>
 
 <div class="acciones">
-    <a href="/" class="iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
+    <a href="/login" class="iniciar-sesion">¿Ya tienes una cuenta? Inicia sesión</a>
     <a href="/olvide" class="olvide-contraseña">¿Olvidaste tu contraseña?</a>
 </div>

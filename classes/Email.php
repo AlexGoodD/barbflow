@@ -83,12 +83,29 @@ class Email {
         $mail->Subject = 'Reestablece tu password';
 
         $contenido = '<html>';
-        $contenido .= "<p><strong>Hola " . $this->nombre .  "</strong> Has solicitado reestablecer tu password, sigue el siguiente enlace para hacerlo.</p>";
-        $contenido .= "<p>Presiona aquí: <a href='" . $this->appUrl . "/recuperar?token=" . $this->token . "'>Reestablecer Password</a>";        
-        $contenido .= "<p>Si tu no solicitaste este cambio, puedes ignorar el mensaje</p>";
+        $contenido .= "<p><strong>Hola " . $this->nombre . ",</strong></p>";
+        $contenido .= "<p>Hemos recibido una solicitud para restablecer tu contraseña. Si fuiste tú quien hizo esta solicitud, haz clic en el siguiente enlace para continuar con el proceso:</p>";
+        $contenido .= "<p><a href='" . $this->appUrl . "/recuperar?token=" . $this->token . "' style='color: #1a73e8;'>Restablecer contraseña</a></p>";
+        $contenido .= "<p>Si no solicitaste un cambio de contraseña, puedes ignorar este mensaje. Tu cuenta permanecerá segura.</p>";
+        $contenido .= "<p>Gracias,<br>El equipo de soporte</p>";
         $contenido .= '</html>';
         $mail->Body = $contenido;
 
         $mail->send();
+    }
+
+    public function enviarMensajeContacto($contenido) {
+        $mail = new PHPMailer(true);
+
+        try {
+            $this->configurarMail($mail);
+            $mail->addAddress($this->mailFromAddress); // Enviar al correo configurado en .env
+            $mail->Subject = 'Nuevo mensaje de contacto';
+            $mail->Body = $contenido;
+
+            return $mail->send();
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

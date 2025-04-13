@@ -10,6 +10,14 @@ use Controllers\ServicioController;
 use MVC\Router;
 $router = new Router();
 
+// Inicio
+$router->get('/home', function() {
+    include __DIR__ . '/../views/home/home.php';
+});
+
+// Mensaje de contacto (Inicio)
+$router->post('/api/enviar-mensaje', [APIController::class, 'enviarMensaje']);
+
 // Iniciar Sesión
 $router->get('/', [LoginController::class, 'login']);
 $router->post('/', [LoginController::class, 'login']);

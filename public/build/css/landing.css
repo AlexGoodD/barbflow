@@ -1,0 +1,326 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.helper {
+  margin-bottom: 7rem;
+}
+
+.hero .container,
+.nosotros .container,
+.servicios .container,
+.precios .container,
+.contacto .container {
+  display: flex;
+  width: 100%;
+  height: 93vh;
+  align-items: center;
+}
+
+.hero .container {
+  background-image: url("../img/barber_bg-home.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.nosotros .container .container-intern {
+  display: flex;
+  padding: 4rem 8rem;
+  background-color: #080808;
+  height: 60rem;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.nosotros .container .container-intern .info-left {
+  width: 30%;
+}
+
+.nosotros .container .container-intern .info-left h2{
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.nosotros .container .container-intern .info-left p{
+  color: #818181;
+  font-size: 2.5rem;
+}
+
+.nosotros .container .container-intern .carousel-about {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: space-between;
+  overflow: hidden;
+  overflow-x: scroll;
+  gap: 20rem;
+}
+
+.carousel-item-1, .carousel-item-2, .carousel-item-3, .carousel-item-4, .carousel-item-5 {
+  background-color: red;
+  background-size: cover;
+  background-position: center;
+  min-width: 23rem;
+  height: 30rem;
+  border-radius: 3rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item-1 {
+  margin-left: 30rem;
+}
+
+.carousel-item-5 {
+  margin-right: 30rem;
+}
+
+.carousel-item-1.focused, 
+.carousel-item-2.focused, 
+.carousel-item-3.focused, 
+.carousel-item-4.focused, 
+.carousel-item-5.focused {
+  transform: scale(1.1); /* Agrandamiento */
+  transition: transform 0.3s ease-in-out; /* Transición suave */
+  z-index: 10; /* Asegura que el elemento enfocado esté por encima */
+}
+
+.servicios .container .container-intern {
+  display: flex;
+  padding: 4rem 8rem;
+  background-color: #08080881;
+  height: 60rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.servicios .container .container-intern .lista-servicios {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+}
+
+.servicio-1, .servicio-2, .servicio-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 35rem;
+}
+
+.servicio-img-1, .servicio-img-2, .servicio-img-3 {
+  width: 35rem;
+  height: 25rem;
+  background-color: red;
+}
+
+.servicio-titulo {
+  color: #DCDCDC;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.servicio-descripcion {
+  color: #818181;
+  font-size: 1.7rem;
+  font-weight: 200;
+  text-align: left;
+}
+
+.precios .container .container-intern{
+  display: flex;
+  padding: 4rem 8rem;
+  background-color: #080808;
+  height: 60rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.precios .container .container-intern .info-left {
+  width: 60%;
+  height: 80%;
+  padding: 0 4rem;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.precios .container .container-intern .info-left .headerPrecio{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -2.5rem;
+}
+
+.precios .container .container-intern .info-left .servicio-nombre{
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.8rem;
+  
+}
+
+.precios .container .container-intern .info-left .servicio-precio{
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.precios .container .container-intern .info-left .servicio-descripcion{
+  color: #818181;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.precios .container .container-intern .info-right {
+  width: 30%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.precios .container .container-intern .info-right h2{
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: right;
+  margin: 0;
+}
+
+.precios .container .container-intern .info-right p{
+  color: #818181;
+  font-size: 2.5rem;
+  text-align: right;
+}
+
+.precios .container .container-intern .info-right .precios-bold-info{
+  color: #fff;
+}
+
+
+.contacto .container .container-intern{
+  display: flex;
+  padding: 4rem 8rem;
+  background-image: url("../img/barber_bg-contact.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 60rem;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contacto .container .container-intern .info-left {
+  width: 40%;
+}
+
+.contacto .container .container-intern .info-left h2{
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.contacto .container .container-intern .info-left .contacto-info{
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: -1rem;
+}
+
+.contacto .container .container-intern .info-left .tipo{
+  color: #fff;
+  font-size: 2.5rem;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.contacto .container .container-intern .info-left .valor{
+  color: #818181;
+  font-size: 2.5rem;
+}
+
+.contacto .container .container-intern .info-right {
+  width: 40%;
+  height: 85%;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 0 10px #000;
+  flex-direction: column;
+  justify-content: flex-end;;
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.contacto .container .container-intern .info-right .contacto-inf{
+  display: flex;
+  flex-direction: column;
+}
+
+.contacto .container .container-intern .info-right .contacto-inf label{
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+.contacto .container .container-intern .info-right .contacto-inf input{
+  background-color: #343434;
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #505050;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.contacto .container .container-intern .info-right .contacto-inf textarea{
+  background-color: #343434;
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #505050;
+  color: #fff;
+  height: 13rem;
+  resize: none;
+  overflow: scroll;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.contacto .container .container-intern .info-right .btn-enviar-msj {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  color: #454545;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  text-align: center;
+  border: 1px solid #454545;
+  transition: all 0.3s ease-in-out;
+  margin-top: 1.5rem;
+  position: relative;
+  right: 0;
+}
+
+.contacto .container .container-intern .info-right .btn-enviar-msj:hover {
+  background-color: #c8c8c8;
+  cursor: pointer;
+}
+

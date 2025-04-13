@@ -1,5 +1,5 @@
 
-.boton-login {
+.boton-login, .boton-registro, .boton-instrucciones, .boton-recuperar {
   background-color: #fff;
   padding: 1.5rem 4rem;
   color: #454545;
@@ -14,32 +14,10 @@
   transition: all 0.3s ease-in-out;
 }
 
-.boton-login:hover {
+.boton-login:hover, .boton-registro:hover, .boton-instrucciones:hover, .boton-recuperar:hover {
   background-color: #c8c8c8;
   cursor: pointer;
 }
-
-.boton-registro {
-  background-color: #fff;
-  padding: 1.5rem 4rem;
-  color: #454545;
-  font-size: 2rem;
-  font-weight: 700;
-  border-radius: 1rem;
-  text-align: center;
-  display: block;
-  width: 100%;
-  margin: 5rem 0;
-  border: 1px solid #454545;
-  transition: all 0.3s ease-in-out;
-}
-
-.boton-registro:hover {
-  background-color: #c8c8c8;
-  cursor: pointer;
-}
-
-
 
 .boton-eliminar {
   background-color: #cb0000;

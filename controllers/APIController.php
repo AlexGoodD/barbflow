@@ -45,4 +45,29 @@ class APIController {
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
     }
+
+    public static function enviarMensaje() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = $_POST['nombre'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $mensaje = $_POST['mensaje'] ?? '';
+    
+            // Validar los campos
+            if (empty($nombre) || empty($email) || empty($mensaje)) {
+                echo json_encode(['resultado' => 'error', 'mensaje' => 'Todos los campos son obligatorios']);
+                return;
+            }
+    
+            // Crear el contenido del correo
+            $contenido = "<p><strong>Nombre:</strong> {$nombre}</p>";
+            $contenido .= "<p><strong>Email:</strong> {$email}</p>";
+            $contenido .= "<p><strong>Mensaje:</strong> {$mensaje}</p>";
+    
+            // Enviar el correo
+            $emailObj = new \Classes\Email($email, $nombre, '');
+            $resultado = $emailObj->enviarMensajeContacto($contenido);
+    
+            echo json_encode(['resultado' => $resultado ? 'exito' : 'error']);
+        }
+    }
 }
