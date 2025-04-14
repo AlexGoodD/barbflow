@@ -1,5 +1,5 @@
 import { cita } from "./app.js";
-import { mostrarHelperAlerta } from "./utils.js";
+import { mostrarHelperAlerta, mostrarAlerta, mostrarAlertaConfirmacion } from "./utils.js";
 import { reservarCita } from "./resumen.js";
 
 export function idCliente() {
@@ -58,28 +58,22 @@ export function agregarBotonesReservar() {
   botonCancelar.classList.add("btn", "btn-cancelar");
 
   // Agregar evento al botón de cancelar
-  botonCancelar.addEventListener("click", () => {
-    Swal.fire({
-      title: "¿Estás seguro de cancelar la reservación?",
-      text: "Si cancelas, perderás toda la información ingresada.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Sí, cancelar",
-      cancelButtonText: "No, continuar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          icon: "success",
-          title: "Reservación cancelada",
-          text: "Tu reservación ha sido cancelada exitosamente.",
-        }).then(() => {
-          // Recargar la página o redirigir al inicio
-          window.location.reload();
-        });
-      }
-    });
+  botonCancelar.addEventListener("click", async () => {
+    const confirmado = await mostrarAlertaConfirmacion(
+      "¿Estás seguro de cancelar la reservación?",
+      "Al hacerlo, deberás completar nuevamente todos los datos, y no podemos garantizar que el horario que deseas esté disponible.",
+    );
+  
+    if (confirmado) {
+      mostrarAlerta(
+        "Reservación cancelada",
+        "Tu reservación ha sido cancelada exitosamente.",
+      );
+  
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
   });
 
   // Agregar los botones al contenedor

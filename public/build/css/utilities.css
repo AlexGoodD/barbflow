@@ -26,7 +26,6 @@
   border: 1px solid #c90000;
 }
 
-
 .alerta-backdrop {
   position: fixed;
   inset: 0; /* top, right, bottom, left: 0 */
@@ -38,7 +37,8 @@
   align-items: center;
 }
 
-.alerta {
+.alerta,
+.alerta-confirmacion {
   z-index: 1000;
   max-width: 100%;
   display: block;
@@ -48,23 +48,66 @@
   transform: translate(-50%, -50%);
 }
 
-sl-alert.alerta::part(base) {
+sl-alert.alerta::part(base),
+sl-alert.alerta-confirmacion::part(base) {
   z-index: 1000;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 450;
   color: #818181;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   width: 850px;
   padding: 1.5rem;
   border-radius: 8px;
   font-size: 2rem;
-
 }
 
-sl-alert.alerta strong {
+sl-alert.alerta strong,
+sl-alert.alerta-confirmacion strong {
   color: #fff;
   font-weight: 500;
   font-size: 2.5rem;
+}
+
+sl-alert.alerta-confirmacion sl-button::part(base) {
+  display: flex;
+  font-size: 1.5rem;
+  height: 3rem;
+  padding: 2rem 1rem;
+  align-items: center;
+  border-radius: 1rem;
+}
+
+.alerta-confirmacion-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.alerta-confirmacion sl-button[variant="danger"]::part(base) {
+  background-color: #ffd7d7;
+  color: #b40000;
+  font-weight: bold;
+  border-radius: 1rem;
+  border: 1px solid #d00000;
+  transition: background-color 0.5s ease-in-out, color 0.5s;
+}
+
+.alerta-confirmacion sl-button[variant="danger"]::part(base):hover {
+  color: #ff3f3f;
+  background-color: #ffdcdc;
+}
+
+.alerta-confirmacion sl-button[variant="primary"]::part(base) {
+  background-color: #1c1c1c;
+  color: #fff;
+  border-radius: 1rem;
+  border: 1px solid #898989;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.alerta-confirmacion sl-button[variant="primary"]::part(base):hover {
+  background-color: #555555;
 }
 
 .step-move {
@@ -73,7 +116,6 @@ sl-alert.alerta strong {
   justify-content: space-between;
   padding: 1rem;
 }
-
 
 .resumen-error {
   background-color: red;
@@ -84,7 +126,7 @@ sl-alert.alerta strong {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   padding: 1rem 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 100;
@@ -101,16 +143,16 @@ sl-alert.alerta strong {
   gap: 1rem;
 }
 
-.navbar-first, .navbar-second {
+.navbar-first,
+.navbar-second {
   display: flex;
   align-items: center;
-  position: relative
+  position: relative;
 }
 
 .navbar-first {
   margin-left: -25.5rem;
   margin-right: 20rem;
-
 }
 
 .navbar-second {

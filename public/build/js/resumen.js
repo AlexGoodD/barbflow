@@ -143,9 +143,7 @@ export async function reservarCita() {
     }
   } catch (e) {
     mostrarAlerta(
-      "Hubo un error al reservar la cita. Intenta nuevamente más tarde.",
-      "danger",
-      ".contenido-resumen"
+      "Hubo un error al reservar la cita. Intenta nuevamente más tarde."
     );
   }
 }
