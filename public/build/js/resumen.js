@@ -131,9 +131,8 @@ export async function reservarCita() {
       console.log(o),
       o.resultado &&
         mostrarAlerta(
-          "¡Reservación creada con éxito! Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado.",
-          "success",
-          ".contenido-resumen"
+          "¡Reservación creada con éxito!",
+          "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado."
         );
 
     if (o.resultado) {
@@ -143,7 +142,8 @@ export async function reservarCita() {
     }
   } catch (e) {
     mostrarAlerta(
-      "Hubo un error al reservar la cita. Intenta nuevamente más tarde."
+      "Hubo un error al reservar la cita.",
+      "Por favor, intenta nuevamente más tarde.",
     );
   }
 }

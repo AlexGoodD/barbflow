@@ -65,14 +65,16 @@ export function agregarBotonesReservar() {
     );
   
     if (confirmado) {
-      mostrarAlerta(
-        "Reservación cancelada",
-        "Tu reservación ha sido cancelada exitosamente.",
-      );
-  
       setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+        mostrarAlerta(
+          "Reservación cancelada",
+          "Tu reservación ha sido cancelada exitosamente."
+        );
+    
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }, 300); 
     }
   });
 

@@ -79,45 +79,54 @@ export function mostrarAlertaConfirmacion(
     alerta.classList.add("alerta-confirmacion");
     alerta.variant = tipo === "error" ? "danger" : tipo;
     alerta.duration = Infinity;
-    alerta.innerHTML = `
-      <strong>${titulo}</strong><br>
-      ${mensaje}<br><br>
-      <div class="alerta-confirmacion-botones">
-        <sl-button variant="danger" size="small" id="confirmar">Sí, cancelar</sl-button>
-        <sl-button variant="primary" size="small" id="cancelar">No, continuar</sl-button>
-      </div>
-    `;
+
+    const strong = document.createElement("strong");
+    strong.textContent = titulo;
+
+    const mensajeTexto = document.createElement("div");
+    mensajeTexto.innerHTML = `${mensaje}<br><br>`;
+
+    const botonesDiv = document.createElement("div");
+    botonesDiv.classList.add("alerta-confirmacion-botones");
+
+    const btnConfirmar = document.createElement("sl-button");
+    btnConfirmar.setAttribute("variant", "danger");
+    btnConfirmar.setAttribute("size", "small");
+    btnConfirmar.id = "confirmar";
+    btnConfirmar.textContent = "Sí, cancelar";
+
+    const btnCancelar = document.createElement("sl-button");
+    btnCancelar.setAttribute("variant", "primary");
+    btnCancelar.setAttribute("size", "small");
+    btnCancelar.id = "cancelar";
+    btnCancelar.textContent = "No, continuar";
+
+    botonesDiv.appendChild(btnConfirmar);
+    botonesDiv.appendChild(btnCancelar);
+
+    alerta.appendChild(strong);
+    alerta.appendChild(mensajeTexto);
+    alerta.appendChild(botonesDiv);
 
     backdrop.appendChild(alerta);
     const contenedorDestino = document.querySelector(contenedor);
     contenedorDestino.appendChild(backdrop);
 
-    console.log("Antes de mostrar la alerta");
     alerta.toast();
     alerta.show();
-    console.log("Después de mostrar la alerta");
 
-    // Agregar listeners después de que la alerta se haya mostrado completamente
-    alerta.addEventListener("sl-after-show", () => {
-      console.log("Alerta mostrada completamente");
-      const btnConfirmar = backdrop.querySelector("#confirmar");
-      const btnCancelar = backdrop.querySelector("#cancelar");
+    btnConfirmar.addEventListener("click", () => {
+      console.log("Botón confirmar presionado");
+      alerta.hide();
+      backdrop.remove();
+      resolve(true);
+    });
 
-      if (btnConfirmar) {
-        btnConfirmar.addEventListener("click", () => {
-          console.log("Botón confirmar presionado");
-          backdrop.remove();
-          resolve(true);
-        });
-      }
-
-      if (btnCancelar) {
-        btnCancelar.addEventListener("click", () => {
-          console.log("Botón cancelar presionado");
-          backdrop.remove();
-          resolve(false);
-        });
-      }
+    btnCancelar.addEventListener("click", () => {
+      console.log("Botón cancelar presionado");
+      alerta.hide();
+      backdrop.remove();
+      resolve(false);
     });
   });
 }
