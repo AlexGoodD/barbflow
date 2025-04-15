@@ -18,9 +18,9 @@ a {
 }
 
 .nombre-pagina {
+  margin-top: 4rem;
   text-align: center;
   font-weight: 700;
-  margin: 0 0 0;
 }
 
 .descripcion-pagina {
