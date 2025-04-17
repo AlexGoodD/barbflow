@@ -6,6 +6,7 @@ import {
   paginaAnterior,
   actualizarTituloPaso,
 } from "./navegacion.js";
+
 import {
   idCliente,
   nombreCliente,
@@ -13,8 +14,12 @@ import {
   seleccionarHora,
   agregarBotonesReservar,
 } from "./cliente.js";
+
 import { mostrarResumen } from "./resumen.js";
+
 import { consultarAPI, mostrarPrecios } from "./servicios.js";
+
+
 function iniciarApp() {
   mostrarSeccion(),
     tabs(),

@@ -2,11 +2,27 @@
   margin-top: 5rem;
   width: 100%;
 }
+
+#admin-citas-section .formulario, #admin-servicios-section .formulario {
+  margin-top: 0;
+  width: 100%;
+}
+
+#admin-citas-section .formulario .campo, #admin-servicios-section .formulario .campo{
+  display: flex;
+  flex-direction: column;
+}
+
+#admin-citas-section .formulario .campo input, #admin-servicios-section .formulario .campo input{
+  width: 30%;
+  margin-bottom: 3rem;
+}
+
+.form
 .campo {
   display: flex;
   flex-direction: column;
   margin-bottom: 5rem;
-
 }
 .campo label {
   color: #fff;
@@ -15,11 +31,13 @@ font-weight: 500;
 
 }
 .campo input {
+  margin: 1.5rem 0 3rem 0;
   flex: 1;
   border: 2px solid #898989;
   padding: 1.25rem;
   border-radius: 1rem;
   color: #fff;
+  width: 100%;
   background-color: #454545;
 }
 

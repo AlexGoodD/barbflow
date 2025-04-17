@@ -44,3 +44,18 @@ a {
   font-size: 1.6rem;
 
 }
+
+.seccion-admin {
+  margin: 3rem 0;
+  text-align: left;
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+.helper-citas {
+  font-size: 2rem;
+  margin-top: 2rem;
+  font-weight: 500;
+  font-style: italic;
+  color: #fff;
+}

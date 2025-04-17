@@ -213,3 +213,39 @@ sl-alert.alerta-confirmacion sl-button::part(base) {
     opacity: 0;
   }
 }
+
+#admin-section-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+}
+
+#admin-section-selector #btn-citas, #admin-section-selector #btn-servicios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  padding: 1rem;
+  height: 4rem;
+  font-size: 1.8rem;
+  border: 1px solid #fff;
+  background-color: #1C1C1C;
+  color: #fff;
+}
+
+#admin-section-selector #btn-citas {
+  border-radius: 1rem 0 0 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#admin-section-selector #btn-servicios {
+  border-radius: 0 1rem 1rem 0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#admin-section-selector #btn-citas.active, #admin-section-selector #btn-servicios.active {
+  background-color: #fff;
+  color: #1C1C1C;
+  font-weight: 600;
+}

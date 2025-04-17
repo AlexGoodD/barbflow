@@ -27,3 +27,145 @@
   overflow: scroll;
   overflow-x: hidden;
 }
+
+#admin-servicios-section {
+  display: none;
+}
+
+#citas-admin {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+  gap: 5.5rem;
+}
+
+.cita-card {
+  background-color: #272727;
+  border-radius: 8px;
+  padding: 1rem 3.5rem;
+  color: #fff;
+  width: 45rem;
+  height: 45rem;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  border: 1px solid #7f7f7f;
+}
+
+.cita-card .header-card {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #7f7f7f;
+  font-size: 2.3rem;
+}
+
+.cita-card .header-card p {
+  margin-right: auto;
+  font-weight: 600;
+}
+
+.cita-card .header-card span {
+  font-weight: 500;
+  color: #7f7f7f;
+}
+
+.cita-card .header-card i {
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  font-size: 2rem;
+}
+
+.cita-card .header-card i:hover {
+  color: #cbcbcb;
+}
+
+.front-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cita-card .cita-info .card-info {
+  display: flex;
+  align-items: center;
+}
+
+.cita-card .cita-info .card-info i {
+  margin-right: 1.5rem;
+  color: #7f7f7f;
+}
+
+.cita-card .cita-info .card-info p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+.cita-card .servicios-info .header-servicios-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cita-card .servicios-info .header-servicios-card p{
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.cita-card .servicios-info ul{
+  list-style: none;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  height: 16rem;
+  overflow: hidden;
+  overflow-y: scroll;
+  border: 1px solid red;
+
+}
+
+.cita-card .servicios-info ul li{
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+}
+
+.cita-card .servicios-info ul li p{
+  font-size: 1.8rem;
+  color: #7F7F7F;
+}
+
+.cita-card .servicios-info .bottom-servicios-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cita-card .servicios-info .bottom-servicios-card p{
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.btn-bottom-card {
+  margin-top: auto;
+}
+
+.boton-ver-mas {
+  background-color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1c1c1c;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  height: 4rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.boton-ver-mas:hover {
+  background-color: #cbcbcb;
+}
