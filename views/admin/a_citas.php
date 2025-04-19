@@ -22,7 +22,7 @@
                 $total = array_reduce($serviciosCita, fn($carry, $item) => $carry + $item->precio, 0);
         ?>
     <div class="cita-card">
-        <div class="cita-info" id="citas">
+        <div class="cita-info" id="citas-<?php echo $cita->id; ?>">
             <div class="header-card">
                 <p>Cita <span>#<?php echo $cita->id; ?></span></p>
                 <form action="/api/eliminar" method="POST" class="form-eliminar">
@@ -51,10 +51,10 @@
                 <p><?php echo $cita->telefono; ?></p>
             </div>
             <div class="btn-bottom-card">
-                <button class="boton-ver-mas" data-id="<?php echo $cita->id; ?>">Ver detalles</button>
+                <button class="boton-ver-mas" data-id="<?php echo $cita->id; ?>">Ver resumen</button>
             </div>
         </div>
-        <div class="servicios-info" id="servicios" style="display: none;">
+        <div class="servicios-info" id="servicios-<?php echo $cita->id; ?>" style="display: none;">
             <div class="header-card">
                 <p>Cita <span>#<?php echo $cita->id; ?></span></p>
                 <form action="/api/eliminar" method="POST" class="form-eliminar">
@@ -70,7 +70,7 @@
                 <?php foreach ($serviciosCita as $servicio): ?>
                 <li>
                     <p><?php echo $servicio->servicio; ?></p>
-                    <p>$<?php echo number_format($servicio->precio, 2); ?> MXN</p>
+                    <p>$<?php echo number_format($servicio->precio ?? 0, 2); ?> MXN</p>
                 </li>
                 <?php endforeach; ?>
             </ul>
@@ -79,7 +79,7 @@
             <p>$<?php echo number_format($total, 2); ?> MXN</p>
             </div>
             <div class="btn-bottom-card">
-                <button class="boton-ver-mas" data-id="<?php echo $cita->id; ?>">Ver resumen</button>
+                <button class="boton-ver-mas" data-id="<?php echo $cita->id; ?>">Ver detalles</button>
             </div>
         </div>
     </div>
