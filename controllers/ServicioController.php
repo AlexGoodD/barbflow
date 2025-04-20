@@ -7,20 +7,24 @@ use MVC\Router;
 
 class ServicioController {
     public static function index(Router $router) {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         isAdmin();
 
         $servicios = Servicio::all();
 
-        $router->render('servicios/index', [
+        $router->render('admin/a_servicios', [
             'nombre' => $_SESSION['nombre'],
             'servicios' => $servicios
         ]);
     }
 
     public static function crear(Router $router) {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         isAdmin();
         $servicio = new Servicio;
         $alertas = [];
@@ -32,7 +36,7 @@ class ServicioController {
 
             if(empty($alertas)) {
                 $servicio->guardar();
-                header('Location: /servicios');
+                header('Location: /admin/servicios');
             }
         }
 
@@ -44,7 +48,9 @@ class ServicioController {
     }
 
     public static function actualizar(Router $router) {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         isAdmin();
 
         if(!is_numeric($_GET['id'])) return;
@@ -60,11 +66,11 @@ class ServicioController {
 
             if(empty($alertas)) {
                 $servicio->guardar();
-                header('Location: /servicios');
+                header('Location: /admin/servicios');
             }
         }
 
-        $router->render('servicios/actualizar', [
+        $router->render('/servicios/actualizar', [
             'nombre' => $_SESSION['nombre'],
             'servicio' => $servicio,
             'alertas' => $alertas
@@ -72,14 +78,16 @@ class ServicioController {
     }
 
     public static function eliminar() {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         isAdmin();
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $servicio = Servicio::find($id);
             $servicio->eliminar();
-            header('Location: /servicios');
+            header('Location: /admin/servicios');
         }
     }
 }

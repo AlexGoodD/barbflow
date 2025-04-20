@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #1c1c1c;
+  --color-secondary: #818181;
+  --color-error: #aa0000;
+  --color-error-bg: #ffa7a7;
+  --color-error-border: #c90000;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-gray: #7f7f7f;
+  --color-light-gray: #c8c8c8;
+  --color-dark-gray: #454545;
+  --color-hover-danger: #980000;
+  --color-hover-primary: #555555;
+  --color-transparent: transparent;
+}

@@ -34,7 +34,7 @@
 
 #citas-admin {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 5.5rem;
 }
@@ -99,8 +99,8 @@
 .cita-card .cita-info .card-info p {
   font-size: 1.7rem;
   font-weight: 500;
-  white-space: nowrap; 
-  overflow: hidden; 
+  white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -110,12 +110,12 @@
   justify-content: space-between;
 }
 
-.cita-card .servicios-info .header-servicios-card p{
+.cita-card .servicios-info .header-servicios-card p {
   font-weight: 600;
   font-size: 1.8rem;
 }
 
-.cita-card .servicios-info ul{
+.cita-card .servicios-info ul {
   list-style: none;
   text-align: left;
   margin: 0;
@@ -125,32 +125,30 @@
   overflow-y: scroll;
 }
 
-.cita-card .servicios-info ul li{
+.cita-card .servicios-info ul li {
   display: flex;
   justify-content: space-between;
   padding: 0;
-
 }
 
-.cita-card .servicios-info ul li p{
+.cita-card .servicios-info ul li p {
   font-size: 1.8rem;
-  color: #7F7F7F;
+  color: #7f7f7f;
 }
 
 .cita-card .servicios-info .bottom-servicios-card {
   position: absolute;
   bottom: 10rem;
   display: flex;
-  justify-content: space-between;  
+  justify-content: space-between;
   border-top: 2px solid #7f7f7f;
   width: 85%;
 }
 
-.cita-card .servicios-info .bottom-servicios-card p{
+.cita-card .servicios-info .bottom-servicios-card p {
   font-weight: 600;
   font-size: 1.8rem;
 }
-
 
 .btn-bottom-card {
   position: absolute; /* Posiciona el botón dentro del contenedor */
@@ -176,4 +174,23 @@
 
 .boton-ver-mas:hover {
   background-color: #cbcbcb;
+}
+
+.header-pagina-servicios {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-pagina-servicios h1 {
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-pagina-servicios i {
+  left: 0;
+  color: #fff;
+  font-size: 3rem;
 }

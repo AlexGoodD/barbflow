@@ -1,7 +1,56 @@
-<?php if(isset($_SESSION['admin'])) { ?>
-    <div class="barra-servicios">
-        <a class="boton" href="/admin">Ver Citas</a>
-        <a class="boton" href="/servicios">Ver Servicios</a>
-        <a class="boton" href="/servicios/crear">Nuevo Servicio</a>
+<h1 class="nombre-pagina">Panel de administración</h1>
+
+<div id="admin-section-selector">
+    <button id="btn-citas" class="boton">Citas</button>
+    <button id="btn-servicios" class="boton">Servicios</button>
+</div>
+
+<div class="top-servicios-admin">
+    <h2 class="seccion-admin">Listado de servicios</h2>
+    <a class="boton" href="/admin/servicios/crear">Nuevo servicio</a>
+</div>
+
+<ul class="servicios">
+    <?php foreach($servicios as $servicio) { ?>
+    <div class="servicios-card">
+        <li>
+            <div class="servicio-info">
+                <div class="header-servicio-info">
+                    <p><?php echo $servicio->nombre; ?> </p>
+                    <div class="servicio-acciones">
+                        <!-- Icono para actualizar -->
+                        <a href="/admin/servicios/actualizar?id=<?php echo $servicio->id; ?>">
+                            <i class="fa-solid fa-pencil editar-icono"></i>
+                        </a>
+
+                        <!-- Icono para eliminar -->
+                        <form action="/admin/servicios/eliminar" method="POST" class="btn-eliminar-servicio">
+                            <input type="hidden" name="id" value="<?php echo $servicio->id; ?>">
+                            <button type="submit" class="icono-eliminar"></button>
+                            <i class="fa-solid fa-trash eliminar-icono"></i>
+                        </form>
+                    </div>
+                </div>
+                <p><?php echo $servicio->descripcion; ?></p>
+                <div class="bottom-servicio-info">
+                    <div class="servicio-item-info-card">
+                        <p>$</p>
+                        <p><?php echo $servicio->precio; ?> MXN</p>
+                    </div>
+                    <div class="servicio-item-info-card" id="duracion-item-info">
+                        <i class="fa-solid fa-clock"></i>
+                        <p><?php echo $servicio->duracion; ?> min</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </li>
     </div>
-<?php } ?>
+    <?php } ?>
+</ul>
+
+<?php
+    $script = "<script src='/build/js/admin-selector.js'></script>";
+    $script .= "<script src='/build/js/verMasCitas.js'></script>";
+?>

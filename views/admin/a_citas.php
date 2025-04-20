@@ -27,7 +27,7 @@
                 <p>Cita <span>#<?php echo $cita->id; ?></span></p>
                 <form action="/api/eliminar" method="POST" class="form-eliminar">
                     <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
-                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-trash eliminar-icono" data-id="<?php echo $cita->id; ?>"></i>
                 </form>
             </div>
             <div class="card-info">
@@ -63,8 +63,8 @@
                 </form>
             </div>
             <div class="header-servicios-card">
-            <p>Servicios</p>
-            <p>Precios</p>
+                <p>Servicios</p>
+                <p>Precios</p>
             </div>
             <ul>
                 <?php foreach ($serviciosCita as $servicio): ?>
@@ -75,8 +75,8 @@
                 <?php endforeach; ?>
             </ul>
             <div class="bottom-servicios-card">
-            <p>Total</p>
-            <p>$<?php echo number_format($total, 2); ?> MXN</p>
+                <p>Total</p>
+                <p>$<?php echo number_format($total, 2); ?> MXN</p>
             </div>
             <div class="btn-bottom-card">
                 <button class="boton-ver-mas" data-id="<?php echo $cita->id; ?>">Ver detalles</button>

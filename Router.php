@@ -24,7 +24,7 @@ class Router
         // Redirigir si el usuario está autenticado y accede a '/'
         if ($currentUrl === '/' && isset($_SESSION['login'])) {
             if (isset($_SESSION['admin']) && $_SESSION['admin'] === "1") {
-                header('Location: /admin');
+                header('Location: /admin/citas');
                 exit;
             } else {
                 header('Location: /cita');

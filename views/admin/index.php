@@ -18,8 +18,8 @@
 </div>
 
 <?php
-    $script = "<script src='build/js/buscador.js'></script>";
-    $script .= "<script src='build/js/admin-selector.js'></script>";
+    $script = "<script src='/build/js/buscador.js'></script>";
+    $script .= "<script src='/build/js/admin-selector.js'></script>";
     $script .= "<script src='/build/js/verMasCitas.js'></script>";
-
+    $script .= "<script src='/build/js/EliminarCitas.js'></script>";
 ?>

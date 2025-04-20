@@ -1,25 +1,28 @@
 .formulario {
   margin-top: 5rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
-#admin-citas-section .formulario, #admin-servicios-section .formulario {
+#admin-citas-section .formulario,
+#admin-servicios-section .formulario {
   margin-top: 0;
   width: 100%;
 }
 
-#admin-citas-section .formulario .campo, #admin-servicios-section .formulario .campo{
+#admin-citas-section .formulario .campo,
+#admin-servicios-section .formulario .campo {
   display: flex;
   flex-direction: column;
 }
 
-#admin-citas-section .formulario .campo input, #admin-servicios-section .formulario .campo input{
+#admin-citas-section .formulario .campo input,
+#admin-servicios-section .formulario .campo input {
   width: 30%;
   margin-bottom: 3rem;
 }
 
-.form
-.campo {
+.form .campo {
   display: flex;
   flex-direction: column;
   margin-bottom: 5rem;
@@ -27,8 +30,7 @@
 .campo label {
   color: #fff;
   margin-bottom: 2rem;
-font-weight: 500;
-
+  font-weight: 500;
 }
 .campo input {
   margin: 1.5rem 0 3rem 0;
@@ -66,4 +68,35 @@ font-weight: 500;
 
 .nombre-completo .campo {
   width: 100%;
+}
+
+.formulario,
+.campo input {
+  box-sizing: border-box;
+}
+
+/* Ajusta el ancho de los inputs para que no sobresalgan */
+.campo input {
+  width: 100%; /* Asegúrate de que ocupen el ancho del contenedor */
+  max-width: 100%; /* Evita que excedan el ancho máximo */
+}
+
+/* Si es necesario, ajusta el padding o margen del formulario */
+.formulario {
+  padding: 1rem; /* Ajusta según sea necesario */
+  overflow: hidden; /* Evita que los elementos sobresalgan */
+}
+
+.campos-numericos {
+  display: flex;
+  gap: 1rem; /* Espaciado entre los elementos */
+  width: 100%; /* Asegúrate de que ocupe todo el ancho del contenedor */
+}
+
+.campos-numericos .campo {
+  flex: 1; /* Los elementos hijos ocuparán el mismo espacio */
+}
+
+.campos-numericos .campo input {
+  width: 100%; /* Los inputs llenarán el ancho del contenedor padre */
 }

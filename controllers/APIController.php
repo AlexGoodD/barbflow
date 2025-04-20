@@ -8,6 +8,15 @@ use Model\Servicio;
 
 class APIController {
     public static function index() {
+
+        // TODO Eliminar headers para produccion
+        header("Access-Control-Allow-Origin: *");
+
+        // Opcionalmente, permite ciertos métodos HTTP
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
+        // Permite ciertos headers (si usas JSON, tokens, etc.)
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
         $servicios = Servicio::all();
         echo json_encode($servicios);
     }

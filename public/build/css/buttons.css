@@ -1,6 +1,12 @@
+@import url("./colors.css");
 
-.boton-login, .boton-registro, .boton-instrucciones, .boton-recuperar {
-  background-color: #fff;
+.boton-login,
+.boton-registro,
+.boton-instrucciones,
+.boton-recuperar,
+.boton-actualizar,
+.boton-crear-servicio {
+  background-color: var(--color-white);
   padding: 1.5rem 4rem;
   color: #454545;
   font-size: 2rem;
@@ -10,31 +16,18 @@
   display: block;
   width: 100%;
   margin: 5rem 0;
-  border: 1px solid #454545;
+  border: 1px solid var(--color-dark-gray);
   transition: all 0.3s ease-in-out;
 }
 
-.boton-login:hover, .boton-registro:hover, .boton-instrucciones:hover, .boton-recuperar:hover {
+.boton-login:hover,
+.boton-registro:hover,
+.boton-instrucciones:hover,
+.boton-recuperar:hover,
+.boton-actualizar:hover,
+.boton-crear-servicio:hover {
   background-color: #c8c8c8;
   cursor: pointer;
-}
-
-.boton-eliminar {
-  background-color: #cb0000;
-  padding: 1.5rem 4rem;
-  color: #fff;
-  margin-top: 2rem;
-  font-size: 2rem;
-  font-weight: 400;
-  display: inline-block;
-  font-weight: 700;
-  border: none;
-  transition-property: background-color;
-  transition-duration: 0.3s;
-  text-align: center;
-  display: block;
-  width: 100%;
-  margin: 5rem 0;
 }
 .acciones {
   display: flex;
@@ -72,15 +65,11 @@
   text-decoration: underline;
 }
 
-.boton-eliminar:hover {
-  background-color: #980000;
-  cursor: pointer;
-}
 .servicios .acciones {
   margin: 0;
 }
 .servicios .boton,
-.servicios .boton-eliminar {
+.servicios {
   margin: 0;
 }
 .tabs {
@@ -165,7 +154,8 @@
 }
 
 @keyframes ant {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
   50% {
@@ -173,9 +163,9 @@
   }
 }
 
-
 @keyframes sig {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
   50% {
@@ -185,12 +175,12 @@
 
 .boton-añadido {
   background-color: white;
-  color: #1C1C1C;
+  color: #1c1c1c;
   cursor: default;
 }
 .boton-añadido:hover {
   background-color: white;
-  color: #1C1C1C;
+  color: #1c1c1c;
 }
 
 .cancelar-reservar {
@@ -216,7 +206,7 @@
 }
 
 .btn-cancelar {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: #fff;
   padding: 1rem 2rem;
   border: 1px solid #454545;
@@ -248,10 +238,42 @@
 }
 
 @keyframes rebote {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(4px);
   }
+}
+
+.icono-eliminar {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-eliminar-servicio {
+  position: relative;
+}
+
+.btn-eliminar-servicio button {
+  position: relative;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+  height: 1rem;
+}
+
+.btn-eliminar-servicio button:hover {
+  color: #cbcbcb;
+}
+
+.btn-eliminar-servicio i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 1.5rem;
+  color: white;
 }
