@@ -5,29 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/build/css/base.css">
+    <link rel="stylesheet" href="/build/css/typography.css">
     <link rel="stylesheet" href="/build/css/landing.css">
     <link rel="stylesheet" href="/build/css/utilities.css">
+    <link rel="stylesheet" href="/build/css/components.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/dist/shoelace.js">
+    </script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/dist/themes/light.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Delius+Swash+Caps&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Leckerli+One&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script type='module'>
     import {
         carruselFotos,
+        navbarScrolling
     } from '/build/js/utils.js';
     carruselFotos();
-    </script>"
-    <script type="module" src="/build/js/servicios.js"></script>
-    <script type="module">
+    navbarScrolling();
+    </script>
+
+    <script type='module'>
     import {
         mostrarPrecios
     } from '/build/js/servicios.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-        mostrarPrecios();
-    });
+    mostrarPrecios();
     </script>
+
     <title>Barbflow</title>
 </head>
 
@@ -35,12 +40,14 @@
 
     <?php include __DIR__ . '/../templates/navbar.php'; ?>
 
+    <div class="contenedor-app"></div>
+
+
     <div class="helper" id="inicio"></div>
 
     <!-- 🟣 SECCIÓN 1: Hero -->
     <section class="hero">
         <div class="container">
-
         </div>
     </section>
 
@@ -140,7 +147,7 @@
                     </div>
                 </div>
                 <div class="info-right">
-                    <form class="formulario" action="/api/enviar-mensaje" method="post">
+                    <form class="formulario" action="/api/enviar-mensaje" method="post" id="form-contacto">
                         <div class="contacto-inf">
                             <label for="nombre">Nombre completo</label>
                             <input type="text" name="nombre">
@@ -164,21 +171,37 @@
 
 </html>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.helper');
-    const navLinks = document.querySelectorAll('.navbar-item a');
+<script type="module">
+import {
+    mostrarAlerta
+} from '/build/js/utils.js';
 
-    const setActiveLink = () => {
-        let index = sections.length;
+document.getElementById('form-contacto').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-        while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
 
-        navLinks.forEach((link) => link.classList.remove('active'));
-        navLinks[index].classList.add('active');
-    };
+    try {
+        const response = await fetch(this.action, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
 
-    setActiveLink();
-    window.addEventListener('scroll', setActiveLink);
+        const result = await response.json();
+
+        if (result.resultado === 'exito') {
+            mostrarAlerta('Éxito', result.mensaje, 'success');
+            this.reset(); // Opcional: limpiar el formulario
+        } else {
+            mostrarAlerta('Error', result.mensaje, 'danger');
+        }
+    } catch (error) {
+        mostrarAlerta('Error', 'Hubo un problema al enviar el mensaje', 'danger');
+        console.error(error);
+    }
 });
 </script>

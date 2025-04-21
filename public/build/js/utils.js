@@ -349,3 +349,22 @@ export function adminSelectorSeccion() {
     });
   });
 }
+
+export function navbarScrolling() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".helper");
+    const navLinks = document.querySelectorAll(".navbar-item a");
+
+    const setActiveLink = () => {
+      let index = sections.length;
+
+      while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
+
+      navLinks.forEach((link) => link.classList.remove("active"));
+      navLinks[index].classList.add("active");
+    };
+
+    setActiveLink();
+    window.addEventListener("scroll", setActiveLink);
+  });
+}

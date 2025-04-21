@@ -15,7 +15,7 @@ export function tabs() {
   document.querySelectorAll(".tabs button").forEach((e) => {
     e.addEventListener("click", function (e) {
       e.preventDefault();
-      setPaso(parseInt(e.target.dataset.paso)); 
+      setPaso(parseInt(e.target.dataset.paso));
       mostrarSeccion();
       botonesPaginador();
       actualizarTituloPaso();

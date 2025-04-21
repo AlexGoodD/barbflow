@@ -4,7 +4,7 @@ import { cita } from "./app.js";
 export async function consultarAPI() {
   try {
     const e = `${APP_URL}/api/servicios`,
-    t = await fetch(e);
+      t = await fetch(e);
     mostrarServicios(await t.json());
   } catch (e) {
     console.log(e);
@@ -12,9 +12,8 @@ export async function consultarAPI() {
 }
 
 export function mostrarServicios(e) {
-  
   const contenedorServicios = document.querySelector("#servicios");
-  
+
   // Limpiar contenido previo
   contenedorServicios.innerHTML = "";
   const tabla = document.createElement("TABLE");
@@ -32,7 +31,6 @@ export function mostrarServicios(e) {
   tabla.appendChild(encabezado);
 
   const cuerpo = document.createElement("TBODY");
-
 
   e.forEach((servicio) => {
     const { id, nombre, duracion, precio } = servicio;
@@ -67,7 +65,6 @@ export function mostrarServicios(e) {
 
   tabla.appendChild(cuerpo);
   contenedorServicios.appendChild(tabla);
-
 }
 
 export function seleccionarServicio(e) {
@@ -103,36 +100,36 @@ export async function mostrarPrecios() {
 
     servicios.forEach((servicio, index) => {
       const { nombre, descripcion, precio } = servicio;
-    
+
       // Crear el contenedor del servicio
       const divServicio = document.createElement("div");
       divServicio.classList.add(`precio-item-${index + 1}`);
-    
+
       // Crear y agregar el nombre del servicio
       const pNombre = document.createElement("p");
       pNombre.classList.add("servicio-nombre");
       pNombre.textContent = nombre;
-    
+
       // Crear y agregar el precio del servicio
       const pPrecio = document.createElement("p");
       pPrecio.classList.add("servicio-precio");
       pPrecio.textContent = `$${precio} MXN`;
-    
+
       // Crear el contenedor del encabezado (nombre y precio)
       const divHeaderPrecio = document.createElement("div");
       divHeaderPrecio.classList.add("headerPrecio");
       divHeaderPrecio.appendChild(pNombre);
       divHeaderPrecio.appendChild(pPrecio);
-    
+
       // Agregar el encabezado al contenedor del servicio
       divServicio.appendChild(divHeaderPrecio);
-    
+
       // Crear y agregar la descripción del servicio
       const pDescripcion = document.createElement("p");
       pDescripcion.classList.add("servicio-descripcion");
       pDescripcion.textContent = descripcion;
       divServicio.appendChild(pDescripcion);
-    
+
       // Agregar el servicio al contenedor principal
       contenedorPrecios.appendChild(divServicio);
     });

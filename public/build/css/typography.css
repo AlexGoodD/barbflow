@@ -42,7 +42,6 @@ a {
 
 .resumen-info-valor {
   font-size: 1.6rem;
-
 }
 
 .seccion-admin {
@@ -57,5 +56,144 @@ a {
   margin-top: 2rem;
   font-weight: 500;
   font-style: italic;
+  color: #fff;
+}
+
+.servicios-card .servicio-info p {
+  font-size: 1.7rem;
+}
+
+.servicios-card .header-servicio-info p {
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.servicios-card li .servicio-info .servicio-item-info-card p {
+  color: #1c1c1c;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.top-servicios-admin a {
+  background-color: #fff;
+  color: #1c1c1c;
+  border-radius: 2rem;
+  padding: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.top-servicios-admin a:hover {
+  background-color: #cccccc;
+  color: #3f3f3f;
+}
+
+.nosotros .container .container-intern .info-left h2 {
+  font-family: "Bebas Neue", sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.nosotros .container .container-intern .info-left p {
+  color: #818181;
+  font-size: 2.5rem;
+}
+
+.precios .container .container-intern .info-right h2 {
+  font-family: "Bebas Neue", sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: right;
+  margin: 0;
+}
+
+.precios .container .container-intern .info-right p {
+  color: #818181;
+  font-size: 2.5rem;
+  text-align: right;
+}
+
+.contacto .container .container-intern .info-left h2 {
+  margin: 0;
+  font-family: "Bebas Neue", sans-serif;
+  color: #fff;
+  font-size: 6rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.cita-card .header-card p {
+  margin-right: auto;
+  font-weight: 600;
+}
+
+.cita-card .header-card span {
+  font-weight: 500;
+  color: #7f7f7f;
+}
+
+.cita-card .header-card i {
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  font-size: 2rem;
+}
+
+.cita-card .header-card i:hover {
+  color: #cbcbcb;
+}
+
+.cita-card .cita-info .card-info i {
+  margin-right: 1.5rem;
+  color: #7f7f7f;
+}
+
+.cita-card .cita-info .card-info p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cita-card .servicios-info .header-servicios-card p {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.cita-card .servicios-info ul li p {
+  font-size: 1.8rem;
+  color: #7f7f7f;
+}
+
+.cita-card .servicios-info .bottom-servicios-card p {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.header-pagina-servicios h1 {
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-pagina-servicios i {
+  left: 0;
+  color: #fff;
+  font-size: 3rem;
+}
+
+.navbar-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navbar-item a.active {
   color: #fff;
 }

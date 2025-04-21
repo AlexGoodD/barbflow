@@ -17,9 +17,7 @@ import {
 
 import { mostrarResumen } from "./resumen.js";
 
-import { consultarAPI, mostrarPrecios } from "./servicios.js";
-
-import { validarFormularioServicios } from "./validarFormulario.js";
+import { consultarAPI } from "./servicios.js";
 
 function iniciarApp() {
   mostrarSeccion(),
@@ -35,7 +33,6 @@ function iniciarApp() {
     seleccionarHora(),
     mostrarResumen();
   agregarBotonesReservar();
-  validarFormularioServicios();
 }
 export let paso = 1;
 
