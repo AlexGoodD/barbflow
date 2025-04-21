@@ -85,6 +85,7 @@
 .formulario {
   padding: 1rem; /* Ajusta según sea necesario */
   overflow: hidden; /* Evita que los elementos sobresalgan */
+  overflow-y: scroll;
 }
 
 .campos-numericos {

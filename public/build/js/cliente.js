@@ -1,5 +1,9 @@
 import { cita } from "./app.js";
-import { mostrarHelperAlerta, mostrarAlerta, mostrarAlertaConfirmacion } from "./utils.js";
+import {
+  mostrarHelperAlerta,
+  mostrarAlerta,
+  mostrarAlertaConfirmacion,
+} from "./utils.js";
 import { reservarCita } from "./resumen.js";
 
 export function idCliente() {
@@ -14,9 +18,9 @@ export function seleccionarFecha() {
   document.querySelector("#fecha").addEventListener("input", function (e) {
     const t = new Date(e.target.value).getUTCDay();
     [6, 0].includes(t)
-    ? ((e.target.value = ""),
-    mostrarHelperAlerta("Fines de semana no permitidos", "error", "#fecha"))
-    : (cita.fecha = e.target.value);
+      ? ((e.target.value = ""),
+        mostrarHelperAlerta("Fines de semana no permitidos", "error", "#fecha"))
+      : (cita.fecha = e.target.value);
   });
 }
 
@@ -25,7 +29,11 @@ export function seleccionarHora() {
     const t = e.target.value.split(":")[0];
     t < 10 || t > 18
       ? ((e.target.value = ""),
-      mostrarHelperAlerta("Fuera del horario del establecimiento", "error", "#hora"))
+        mostrarHelperAlerta(
+          "Fuera del horario del establecimiento",
+          "error",
+          "#hora"
+        ))
       : (cita.hora = e.target.value);
   });
 }
@@ -61,20 +69,20 @@ export function agregarBotonesReservar() {
   botonCancelar.addEventListener("click", async () => {
     const confirmado = await mostrarAlertaConfirmacion(
       "¿Estás seguro de cancelar la reservación?",
-      "Al hacerlo, deberás completar nuevamente todos los datos, y no podemos garantizar que el horario que deseas esté disponible.",
+      "Al hacerlo, deberás completar nuevamente todos los datos, y no podemos garantizar que el horario que deseas esté disponible."
     );
-  
+
     if (confirmado) {
       setTimeout(() => {
         mostrarAlerta(
           "Reservación cancelada",
           "Tu reservación ha sido cancelada exitosamente."
         );
-    
+
         setTimeout(() => {
           window.location.reload();
         }, 3000);
-      }, 300); 
+      }, 300);
     }
   });
 

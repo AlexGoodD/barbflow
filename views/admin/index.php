@@ -12,7 +12,7 @@
 </div>
 
 <div id="admin-servicios-section">
-<?php
+    <?php
         include __DIR__ . '/a_servicios.php';
     ?>
 </div>
@@ -22,4 +22,5 @@
     $script .= "<script src='/build/js/admin-selector.js'></script>";
     $script .= "<script src='/build/js/verMasCitas.js'></script>";
     $script .= "<script src='/build/js/EliminarCitas.js'></script>";
+    $script .= "<script src='/build/js/validarFormulario.js'></script>";
 ?>

@@ -15,7 +15,7 @@
   width: 40%;
   display: block;
   text-align: left;
-  margin: 2rem 0 -3rem 0;
+  margin: 0 0 2rem 0;
   font-weight: 500;
   border-radius: 1rem;
 }
@@ -221,7 +221,8 @@ sl-alert.alerta-confirmacion sl-button::part(base) {
   height: 5rem;
 }
 
-#admin-section-selector #btn-citas, #admin-section-selector #btn-servicios {
+#admin-section-selector #btn-citas,
+#admin-section-selector #btn-servicios {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,7 +231,7 @@ sl-alert.alerta-confirmacion sl-button::part(base) {
   height: 4rem;
   font-size: 1.8rem;
   border: 1px solid #fff;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: #fff;
 }
 
@@ -244,8 +245,9 @@ sl-alert.alerta-confirmacion sl-button::part(base) {
   transition: background-color 0.3s ease-in-out;
 }
 
-#admin-section-selector #btn-citas.active, #admin-section-selector #btn-servicios.active {
+#admin-section-selector #btn-citas.active,
+#admin-section-selector #btn-servicios.active {
   background-color: #fff;
-  color: #1C1C1C;
+  color: #1c1c1c;
   font-weight: 600;
 }

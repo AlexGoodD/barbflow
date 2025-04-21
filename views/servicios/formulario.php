@@ -23,3 +23,7 @@
             value="<?php echo $servicio->precio; ?>" />
     </div>
 </div>
+
+<?php
+    $script =  "<script type='module' src='/build/js/validarFormulario.js'></script>";
+?>

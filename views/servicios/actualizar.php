@@ -6,7 +6,7 @@
     include_once __DIR__ . '/../templates/alertas.php';
 ?>
 
-<form method="POST" class="formulario">
+<form method="POST" class="formulario" id="form-servicio">
     <?php include_once __DIR__ . '/formulario.php'; ?>
     <input type="submit" class="boton-actualizar" value="Actualizar">
 </form>
