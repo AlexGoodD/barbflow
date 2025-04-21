@@ -18,9 +18,11 @@
 </div>
 
 <?php
-    $script = "<script src='/build/js/buscador.js'></script>";
-    $script .= "<script src='/build/js/admin-selector.js'></script>";
-    $script .= "<script src='/build/js/verMasCitas.js'></script>";
-    $script .= "<script src='/build/js/EliminarCitas.js'></script>";
-    $script .= "<script src='/build/js/validarFormulario.js'></script>";
+    $script = "<script type='module'>
+    import { adminSelectorSeccion, buttonVerMas, buscadorCitas, buttonEliminarCitas } from '/build/js/utils.js';
+    adminSelectorSeccion();
+    buttonVerMas();
+    buscadorCitas();
+    buttonEliminarCitas();
+    </script>";
 ?>

@@ -51,6 +51,9 @@
 </ul>
 
 <?php
-    $script = "<script src='/build/js/admin-selector.js'></script>";
-    $script .= "<script src='/build/js/verMasCitas.js'></script>";
+    $script = "<script type='module'>
+    import { adminSelectorSeccion, buttonVerMas } from '/build/js/utils.js';
+    adminSelectorSeccion();
+    buttonVerMas();
+</script>";
 ?>

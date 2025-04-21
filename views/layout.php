@@ -31,9 +31,10 @@
     <link rel="stylesheet" href="<?php echo asset('/build/css/typography.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('/build/css/utilities.css') ?>">
     <link rel="stylesheet" href="<?php echo asset('/build/css/tables.css') ?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css">
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
     <script type="module" src="<?php echo asset('/build/js/shoelace-components.js'); ?>"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/themes/light.css">
+
 </head>
 
 <body>

@@ -24,6 +24,10 @@
     </div>
 </div>
 
+
 <?php
-    $script =  "<script type='module' src='/build/js/validarFormulario.js'></script>";
+    $script = "<script type='module'>
+    import { validarFormularioServicios } from '/build/js/utils.js';
+    validarFormularioServicios();
+    </script>";
 ?>
