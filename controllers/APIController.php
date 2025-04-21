@@ -57,26 +57,34 @@ class APIController {
 
     public static function enviarMensaje() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = $_POST['nombre'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $mensaje = $_POST['mensaje'] ?? '';
+            // Leer el cuerpo JSON
+            $input = json_decode(file_get_contents('php://input'), true);
     
-            // Validar los campos
+            $nombre = $input['nombre'] ?? '';
+            $email = $input['email'] ?? '';
+            $mensaje = $input['mensaje'] ?? '';
+    
+            // Validación
             if (empty($nombre) || empty($email) || empty($mensaje)) {
                 echo json_encode(['resultado' => 'error', 'mensaje' => 'Todos los campos son obligatorios']);
                 return;
             }
     
-            // Crear el contenido del correo
+            // Enviar correo
             $contenido = "<p><strong>Nombre:</strong> {$nombre}</p>";
             $contenido .= "<p><strong>Email:</strong> {$email}</p>";
             $contenido .= "<p><strong>Mensaje:</strong> {$mensaje}</p>";
     
-            // Enviar el correo
             $emailObj = new \Classes\Email($email, $nombre, '');
             $resultado = $emailObj->enviarMensajeContacto($contenido);
     
-            echo json_encode(['resultado' => $resultado ? 'exito' : 'error']);
+            // SOLO UN ECHO
+            echo json_encode([
+                'resultado' => $resultado ? 'exito' : 'error',
+                'mensaje' => $resultado
+                    ? 'El mensaje se ha enviado correctamente'
+                    : 'No se pudo enviar el mensaje'
+            ]);
         }
     }
 }

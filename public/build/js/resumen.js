@@ -7,7 +7,7 @@ export function mostrarResumen() {
   const e = document.querySelector(".contenido-resumen");
   while (e.firstChild) e.removeChild(e.firstChild);
 
- /*  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
+  /*  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
     return mostrarAlerta(
       "Necesitas completar los pasos anteriores para ver un resumen de tu cita.",
       "resumen-error",
@@ -82,7 +82,7 @@ function mostrarResumenDetalles(contenedor) {
   const { nombre: t, fecha: o, hora: a } = cita;
 
   const tituloResumen = document.createElement("P");
-  tituloResumen.textContent = "Detalles de tu cita"; 
+  tituloResumen.textContent = "Detalles de tu cita";
   tituloResumen.classList.add("encabezado-resumen");
   contenedor.appendChild(tituloResumen);
 
@@ -128,7 +128,7 @@ export async function reservarCita() {
     const e = `${APP_URL}/api/citas`,
       t = await fetch(e, { method: "POST", body: r }),
       o = await t.json();
-      console.log(o),
+    console.log(o),
       o.resultado &&
         mostrarAlerta(
           "¡Reservación creada con éxito!",
@@ -143,7 +143,7 @@ export async function reservarCita() {
   } catch (e) {
     mostrarAlerta(
       "Hubo un error al reservar la cita.",
-      "Por favor, intenta nuevamente más tarde.",
+      "Por favor, intenta nuevamente más tarde."
     );
   }
 }

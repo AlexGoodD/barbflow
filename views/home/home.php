@@ -195,9 +195,10 @@ document.getElementById('form-contacto').addEventListener('submit', async functi
 
         if (result.resultado === 'exito') {
             mostrarAlerta('Éxito', result.mensaje, 'success');
-            this.reset(); // Opcional: limpiar el formulario
+            this.reset();
         } else {
             mostrarAlerta('Error', result.mensaje, 'danger');
+            this.reset();
         }
     } catch (error) {
         mostrarAlerta('Error', 'Hubo un problema al enviar el mensaje', 'danger');
