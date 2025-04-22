@@ -80,9 +80,9 @@ class LoginController {
                     $email->enviarInstrucciones();
 
                     // Alerta de exito
-                    Usuario::setAlerta('exito', 'Revisa tu email');
+                    Usuario::setAlerta('exito', 'Revisa tu correo electrónico');
                  } else {
-                     Usuario::setAlerta('error', 'El Usuario no existe o no esta confirmado');
+                     Usuario::setAlerta('error', 'El usuario no existe o no esta confirmado');
                      
                  }
             } 
@@ -105,7 +105,7 @@ class LoginController {
         $usuario = Usuario::where('token', $token);
 
         if(empty($usuario)) {
-            Usuario::setAlerta('error', 'Token No Válido');
+            Usuario::setAlerta('error', 'Token no válido');
             $error = true;
         }
 
@@ -190,13 +190,13 @@ class LoginController {
 
         if(empty($usuario)) {
             // Mostrar mensaje de error
-            Usuario::setAlerta('error', 'Token No Válido');
+            Usuario::setAlerta('error', 'Token no válido');
         } else {
             // Modificar a usuario confirmado
             $usuario->confirmado = "1";
             $usuario->token = null;
             $usuario->guardar();
-            Usuario::setAlerta('exito', 'Cuenta Comprobada Correctamente');
+            Usuario::setAlerta('exito', 'Cuenta confirmada correctamente');
         }
        
         // Obtener alertas

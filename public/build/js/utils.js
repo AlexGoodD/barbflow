@@ -16,7 +16,7 @@ export function mostrarAlerta(
   // Crear alerta con Shoelace
   const alerta = document.createElement("sl-alert");
   alerta.classList.add("alerta");
-  alerta.duration = autoCerrar ? 3000 : Infinity;
+  alerta.duration = autoCerrar ? 3000 : 3000;
   alerta.innerHTML = `
      <strong>${titulo}</strong><br>
     ${mensaje}
