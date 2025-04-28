@@ -36,8 +36,8 @@ DB_NAME=nombre_base_datos
 
 MAIL_HOST=smtp.mailtrap.io
 MAIL_PORT=2525
-MAIL_USERNAME=4ec54dfb980a42
-MAIL_PASSWORD=ae938c99960f22
+MAIL_USERNAME=4ec54dfb980a42 <- Aqui van tu username de mailtrap
+MAIL_PASSWORD=ae938c99960f22 <- Contraseña de mailtrap
 MAIL_FROM_ADDRESS=correo@appsalon.com
 MAIL_FROM_NAME=AppSalon.com
 
