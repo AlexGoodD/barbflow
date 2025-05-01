@@ -65,11 +65,13 @@
                         decepcionarte. Respetando como máxima tu criterio, gustos y preferencia ante todo.</p>
                 </div>
                 <div class="carousel-about">
+                    <div class="carousel-item-helper"></div>
                     <div class="carousel-item-1"></div>
                     <div class="carousel-item-2"></div>
                     <div class="carousel-item-3"></div>
                     <div class="carousel-item-4"></div>
                     <div class="carousel-item-5"></div>
+                    <div class="carousel-item-helper"></div>
                 </div>
             </div>
         </div>

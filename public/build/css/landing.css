@@ -41,7 +41,7 @@ body {
 .nosotros .container .container-intern .carousel-about {
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 60%;
   justify-content: space-between;
   overflow: hidden;
   overflow-x: scroll;
@@ -53,21 +53,39 @@ body {
 .carousel-item-3,
 .carousel-item-4,
 .carousel-item-5 {
-  background-color: red;
   background-size: cover;
   background-position: center;
-  min-width: 23rem;
-  height: 30rem;
+  min-width: 30rem;
+  height: 40rem;
   border-radius: 3rem;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 1s ease-in-out, filter 1s ease-in-out;
+  filter: brightness(0.5);
 }
 
 .carousel-item-1 {
-  margin-left: 30rem;
+  background-image: url("../img/barber_about1.jpg");
+}
+
+.carousel-item-2 {
+  background-image: url("../img/barber_about2.jpg");
+}
+
+.carousel-item-3 {
+  background-image: url("../img/barber_about3.jpg");
+}
+
+.carousel-item-4 {
+  background-image: url("../img/barber_about4.jpg");
 }
 
 .carousel-item-5 {
-  margin-right: 30rem;
+  background-image: url("../img/barber_about5.jpg");
+}
+
+.carousel-item-helper {
+  min-width: 10rem;
+  height: 40rem;
+  opacity: 0;
 }
 
 .carousel-item-1.focused,
@@ -75,9 +93,9 @@ body {
 .carousel-item-3.focused,
 .carousel-item-4.focused,
 .carousel-item-5.focused {
-  transform: scale(1.1); /* Agrandamiento */
-  transition: transform 0.3s ease-in-out; /* Transición suave */
-  z-index: 10; /* Asegura que el elemento enfocado esté por encima */
+  transform: scale(1.1);
+  filter: brightness(1);
+  z-index: 10;
 }
 
 .servicios .container .container-intern {
@@ -110,7 +128,27 @@ body {
 .servicio-img-3 {
   width: 35rem;
   height: 25rem;
-  background-color: red;
+  background-size: cover;
+  transition: filter 0.3s ease-in-out;
+  filter: brightness(0.5);
+}
+
+.servicio-img-1 {
+  background-image: url("../img/barber_service1.jpg");
+}
+
+.servicio-img-2 {
+  background-image: url("../img/barber_service2.jpg");
+}
+
+.servicio-img-3 {
+  background-image: url("../img/barber_service3.jpg");
+}
+
+.servicio-img-1:hover,
+.servicio-img-2:hover,
+.servicio-img-3:hover {
+  filter: brightness(1);
 }
 
 .servicio-titulo {
