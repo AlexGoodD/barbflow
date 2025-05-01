@@ -1,6 +1,6 @@
--- Creación de tablas
+-- USE Barbflow; <- Cambia a tu base de datos y descomenta esta línea
 
--- USE `Barblow`; <- Cambia a tu base de datos y descomenta esta línea
+-- Creación de tablas
 
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -51,21 +51,21 @@ CREATE TABLE `citasServicios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
 (9, ' Juanm', 'De la torre', 'correo@correo.com', '$2y$10$9TTiKdZXQaUQaSbVKd7wPOucLusU8ebkv2h2IgqNjQXs.uLTW7CAq', '1234567890', 0, 1, '');
 
-INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
-(1, 'Corte de Cabello Mujer ACTUALIZADO', 120.00),
-(2, 'Corte de Cabello Hombre', 80.00),
-(3, 'Corte de Cabello Niño', 60.00),
-(4, 'Peinado Mujer', 80.00),
-(5, 'Peinado Hombre', 60.00),
-(6, 'Peinado Niño', 60.00),
-(7, 'Corte de Barba', 60.00),
-(8, 'Tinte Mujer', 300.00),
-(9, 'Uñas', 400.00),
-(10, 'Lavado de Cabello', 50.00),
-(11, 'Tratamiento Capilar', 150.00);
+INSERT INTO `servicios` (`id`, `nombre`, `precio`, `duracion`, `descripcion`) VALUES
+(1, 'Corte de cabello mujer', 120.00, 45, 'Corte profesional con asesoría de estilo para mujeres.'),
+(2, 'Corte de cabello hombre', 80.00, 30, 'Corte clásico o moderno para hombres, incluye limpieza.'),
+(3, 'Corte de cabello niño', 60.00, 25, 'Corte para niños con trato especializado y paciencia.'),
+(4, 'Peinado mujer', 80.00, 40, 'Peinado elegante o casual para eventos o uso diario.'),
+(5, 'Peinado hombre', 60.00, 20, 'Peinado con productos de fijación para un acabado duradero.'),
+(6, 'Peinado niño', 60.00, 20, 'Peinado divertido o formal adaptado para niños.'),
+(7, 'Corte de barba', 60.00, 20, 'Diseño y arreglo de barba con máquina o navaja.'),
+(8, 'Tinte mujer', 300.00, 90, 'Aplicación de tinte completo, incluye lavado y peinado.'),
+(9, 'Uñas', 400.00, 60, 'Manicura y aplicación de esmalte o gel a elección.'),
+(10, 'Lavado de cabello', 50.00, 15, 'Lavado con masaje capilar relajante y productos nutritivos.'),
+(11, 'Tratamiento capilar', 150.00, 50, 'Tratamiento para nutrir y revitalizar el cabello dañado.');
 
 INSERT INTO `citas` (`id`, `fecha`, `hora`, `usuarioId`) VALUES
-(22, '2023-11-29', '10:30:00', 9);
+(22, '2025-05-03', '10:30:00', 9);
 
 INSERT INTO `citasServicios` (`id`, `citaId`, `servicioId`) VALUES
 (18, 22, 2);
