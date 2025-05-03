@@ -1,7 +1,15 @@
-<h1 class="nombre-pagina">Confirmar Cuenta</h1>
-
-<?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+<h1 class="nombre-pagina">Confirmación de cuneta</h1>
 
 <div class="acciones">
-    <a href="/">Iniciar Sesión</a>
+    <a class="boton-login" href="/">Iniciar sesión</a>
 </div>
+
+<?php if (!empty($alertas)) : ?>
+<script>
+window.erroresLogin = <?php echo json_encode($alertas); ?>;
+window.alertasGlobales = <?php echo json_encode($alertas); ?>;
+</script>
+<?php endif; ?>
+
+<script type="module" src="/build/js/formErrores.js"></script>
+<script type="module" src="/build/js/globalAlertas.js"></script>

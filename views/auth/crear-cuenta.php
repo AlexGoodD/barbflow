@@ -4,30 +4,31 @@
 
     <div class="campo">
         <label for="nombre">Nombre(s)</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre"
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre"
             value="<?php echo s($usuario->nombre); ?>" />
     </div>
 
     <div class="campo">
         <label for="apellido">Apellido(s)</label>
-        <input type="text" id="apellido" name="apellido" placeholder="Tu Apellido"
+        <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido"
             value="<?php echo s($usuario->apellido); ?>" />
     </div>
 
     <div class="campo">
         <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" placeholder="Tu Teléfono"
+        <input type="tel" id="telefono" name="telefono" placeholder="Número de teléfono"
             value="<?php echo s($usuario->telefono); ?>" />
     </div>
 
     <div class="campo">
         <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" placeholder="Tu E-mail" value="<?php echo s($usuario->email); ?>" />
+        <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico"
+            value="<?php echo s($usuario->email); ?>" />
     </div>
 
     <div class="campo">
         <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" placeholder="Tu Password" />
+        <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" />
     </div>
 
     <input type="submit" value="Registrarme" class="boton-registro">
