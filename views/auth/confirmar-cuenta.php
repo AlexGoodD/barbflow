@@ -1,4 +1,4 @@
-<h1 class="nombre-pagina">Confirmación de cuneta</h1>
+<h1 class="nombre-pagina">Confirmación de cuenta</h1>
 
 <div class="acciones">
     <a class="boton-login" href="/">Iniciar sesión</a>

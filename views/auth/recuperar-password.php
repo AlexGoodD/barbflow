@@ -1,11 +1,11 @@
-<h1 class="nombre-pagina">Recuperar Password</h1>
+<h1 class="nombre-pagina">Recuperar contraseña</h1>
 <p class="descripcion-pagina">Coloca tu nueva contraseña a continuación</p>
 
 <?php if($error) return; ?>
 <form class="formulario" method="POST">
     <div class="campo">
         <label for="password">Nueva contraseña</label>
-        <input type="password" id="password" name="password" placeholder="Tu Nuevo Password" />
+        <input type="password" id="password" name="password" placeholder="Tu nueva contraseña" />
     </div>
     <input type="submit" class="boton-recuperar" value="Reestablecer contraseña">
 
