@@ -95,3 +95,41 @@ export function agregarBotonesReservar() {
   // Agregar el contenedor de botones al contenedor principal
   contenedorApp.appendChild(contenedorBotones);
 }
+
+export function verificarDisponibilidadFechaHora() {
+  const fechaInput = document.querySelector("#fecha");
+  const horaInput = document.querySelector("#hora");
+
+  function verificarDisponibilidad() {
+    const fecha = fechaInput.value;
+    const hora = horaInput.value;
+
+    if (fecha && hora) {
+      fetch("/api/verificar-disponibilidad", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ fecha, hora }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.disponible) {
+            mostrarHelperAlerta(
+              "La fecha y hora seleccionadas ya están ocupadas. Por favor, elige otro horario.",
+              "error",
+              "#fecha"
+            );
+            fechaInput.value = "";
+            horaInput.value = "";
+          }
+        })
+        .catch(console.error("Error al verificar disponibilidad:", error));
+    }
+  }
+
+  fechaInput.addEventListener("input", verificarDisponibilidad);
+  horaInput.addEventListener("input", verificarDisponibilidad);
+}
+
+verificarDisponibilidadFechaHora();

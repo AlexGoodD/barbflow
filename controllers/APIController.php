@@ -22,6 +22,21 @@ class APIController {
     }
 
     public static function guardar() {
+
+        // Validar si ya existe una cita en la misma fecha y hora
+        $fecha = $_POST['fecha'];
+        $hora = $_POST['hora'];
+
+        $query = "SELECT * FROM citas WHERE fecha = '$fecha' AND hora = '$hora' LIMIT 1";
+        $resultado = Cita::SQL($query);
+
+        if (!empty($resultado)) {
+            echo json_encode([
+                'resultado' => false,
+                'mensaje' => 'Ya existe una cita en esta fecha y hora. Por favor, selecciona otro horario.'
+            ]);
+            return;
+        }
         
         // Almacena la Cita y devuelve el ID
         $cita = new Cita($_POST);
@@ -85,6 +100,19 @@ class APIController {
                     ? 'El mensaje se ha enviado correctamente'
                     : 'No se pudo enviar el mensaje'
             ]);
+        }
+    }
+
+    public static function verificarDisponibilidad() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+            $fecha = $input['fecha'] ?? '';
+            $hora = $input['hora'] ?? '';
+
+            $query = "SELECT * FROM citas WHERE fecha = '$fecha' AND hora = '$hora' LIMIT 1";
+            $resultado = Cita::SQL($query);
+
+            echo json_encode(['disponible' => empty($resultado)]);
         }
     }
 }
