@@ -1,6 +1,5 @@
 <?php
-// Initialize $pasoActual with a default value
-$pasoActual = 1; // Default to sep 1
+$pasoActual = 1; 
 ?>
 <div id="app">
     <div class="step-move">
@@ -20,10 +19,13 @@ $pasoActual = 1; // Default to sep 1
         <?php $pasoActual = 2; include __DIR__ . '/c_fecha.php'; ?>
     </div>
     <div id="paso-3" class="seccion">
-        <?php $pasoActual = 3; include __DIR__ . '/c_contacto.php'; ?>
+        <?php $pasoActual = 3; include __DIR__ . '/c_barbero.php'; ?>
     </div>
     <div id="paso-4" class="seccion">
-        <?php $pasoActual = 4; include __DIR__ . '/c_resumen.php'; ?>
+        <?php $pasoActual = 4; include __DIR__ . '/c_contacto.php'; ?>
+    </div>
+    <div id="paso-5" class="seccion">
+        <?php $pasoActual = 5; include __DIR__ . '/c_resumen.php'; ?>
     </div>
 </div>
 

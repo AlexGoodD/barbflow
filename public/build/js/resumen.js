@@ -7,15 +7,6 @@ export function mostrarResumen() {
   const e = document.querySelector(".contenido-resumen");
   while (e.firstChild) e.removeChild(e.firstChild);
 
-  /*  if (Object.values(cita).includes("") || cita.servicios.length === 0) {
-    return mostrarAlerta(
-      "Necesitas completar los pasos anteriores para ver un resumen de tu cita.",
-      "resumen-error",
-      ".contenido-resumen",
-      false
-    );
-  } */
-
   // Agregar botón de reservar dentro del contenedor .app
   agregarBotonesReservar();
   agregarBotonDesplazamientoResumen();
@@ -96,7 +87,9 @@ function mostrarResumenDetalles(contenedor) {
   contenedorInfo.appendChild(cliente);
 
   // Fecha
-  const s = new Date(o);
+  const [year, month, day] = o.split("-");
+  const s = new Date(year, month - 1, day);
+
   const m = s.toLocaleDateString("es-MX", {
     weekday: "long",
     year: "numeric",
@@ -117,30 +110,36 @@ function mostrarResumenDetalles(contenedor) {
 }
 
 export async function reservarCita() {
-  const { nombre: e, fecha: t, hora: o, servicios: a, id: n } = cita,
-    c = a.map((e) => e.id),
-    r = new FormData();
-  r.append("fecha", t),
-    r.append("hora", o),
-    r.append("usuarioId", n),
-    r.append("servicios", c);
-  try {
-    const e = `${APP_URL}/api/citas`,
-      t = await fetch(e, { method: "POST", body: r }),
-      o = await t.json();
-    console.log(o),
-      o.resultado &&
-        mostrarAlerta(
-          "¡Reservación creada con éxito!",
-          "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado."
-        );
+  const { nombre: e, fecha: t, hora: o, servicios: a, id: n, email: m } = cita;
+  const c = a.map((e) => e.id);
+  console.warn("Cita:", cita);
+  const r = new FormData();
 
-    if (o.resultado) {
+  r.append("fecha", t);
+  r.append("hora", o);
+  r.append("usuarioId", n);
+  r.append("email", m);
+  r.append("servicios", c);
+
+  try {
+    const url = `${APP_URL}/api/citas`;
+    const response = await fetch(url, { method: "POST", body: r });
+    const data = await response.json();
+
+    console.log(data);
+
+    if (data.resultado) {
+      mostrarAlerta(
+        "¡Reservación creada con éxito!",
+        "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado."
+      );
+
       setTimeout(() => {
         window.location.reload();
       }, 3000);
     }
-  } catch (e) {
+  } catch (error) {
+    console.warn("Error reservando cita:", error);
     mostrarAlerta(
       "Hubo un error al reservar la cita.",
       "Por favor, intenta nuevamente más tarde."

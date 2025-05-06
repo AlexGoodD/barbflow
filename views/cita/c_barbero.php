@@ -1,0 +1,1 @@
+<?php include __DIR__ . '/../templates/wizard.php'; ?>

@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+date_default_timezone_set($_ENV['APP_TIMEZONE'] ?? 'UTC');
+
 use Controllers\AdminController;
 use Controllers\APIController;
 use Controllers\CitaController;

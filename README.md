@@ -41,9 +41,13 @@ MAIL_PASSWORD=ae938c99960f22 <- Contraseña de mailtrap
 MAIL_FROM_ADDRESS=correo@appsalon.com
 MAIL_FROM_NAME=AppSalon.com
 
+APP_TIMEZONE=America/Mexico_City
+DB_TIMEZONE=-06:00
+
 - APP_URL: Cambia la URL base según tu puerto
 - DB_USER y DB_PASS: Configura el usuario y contraseña de tu base de datos MySQL.
 - DB_NAME: Crea una base de datos en phpMyAdmin y coloca su nombre aquí.
+- APP_TIMEZONE & DB_TIMEZONE = Es importante cambiar estos datos si quieres que la verificación de disponibibilidad este sincronizado con tu zona horaria.
 
 ¡También es importante cambiar la APP_URL en el archivo config.js!
 

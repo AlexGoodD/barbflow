@@ -69,7 +69,7 @@ class Email {
                 // ✅ Éxito
                 echo "Correo de confirmación enviado.";
             }
-        } catch (Exception $e) {
+        } catch (e) {
             // ❌ Error
             echo "Error al enviar el correo: {$mail->ErrorInfo}";
         }
@@ -99,10 +99,68 @@ class Email {
 
         try {
             $this->configurarMail($mail);
-            $mail->addAddress($this->mailFromAddress); // Enviar al correo configurado en .env
+            $mail->addAddress($this->mailFromAddress); 
             $mail->Subject = 'Nuevo mensaje de contacto';
             $mail->Body = $contenido;
 
+            return $mail->send();
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function enviarAlertaCancelación($fecha, $hora) {
+        $mail = new PHPMailer();
+    
+        try {
+            $this->configurarMail($mail);
+    
+            $mail->addAddress($this->email);
+            $mail->Subject = 'Cancelación de Cita';
+    
+            // Asegurarse de que $this->nombre no sea null
+            $nombre = htmlspecialchars($this->nombre ?? 'Cliente', ENT_QUOTES, 'UTF-8');
+    
+            $contenido = '<html>';
+            $contenido .= "<p><strong>Hola " . $nombre . ",</strong></p>";
+            $contenido .= "<p>Lamentamos informarte que tu cita programada para el día <strong>{$fecha}</strong> a las <strong>{$hora}</strong> ha sido cancelada.</p>";
+            $contenido .= "<p>Si tienes alguna duda o deseas reprogramar tu cita, no dudes en contactarnos.</p>";
+            $contenido .= "<p>Gracias,<br>El equipo de soporte</p>";
+            $contenido .= '</html>';
+            $mail->Body = $contenido;
+    
+            return $mail->send();
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function enviarAlertaCita($fecha, $hora) {
+        $mail = new PHPMailer();
+    
+        try {
+            $this->configurarMail($mail);
+    
+            $mail->addAddress($this->email);
+            $mail->Subject = 'Reservación de cita';
+    
+            // Asegurarse de que $this->nombre no sea null
+            $nombre = htmlspecialchars($this->nombre ?? 'Cliente', ENT_QUOTES, 'UTF-8');
+    
+            $contenido = '<html>';
+            $contenido .= "<p><strong>Hola {$nombre},</strong></p>";
+            $contenido .= "<p>¡Gracias por reservar con <strong>The barber's</strong>! Tu cita ha sido registrada con éxito.</p>";
+            $contenido .= "<p><strong>Detalles de tu cita:</strong></p>";
+            $contenido .= "<ul>";
+            $contenido .= "<li><strong>Fecha:</strong> {$fecha}</li>";
+            $contenido .= "<li><strong>Hora:</strong> {$hora}</li>";
+            $contenido .= "</ul>";
+            $contenido .= "<p>Te esperamos puntual en nuestras instalaciones. Si necesitas modificar o cancelar tu cita, puedes contactarnos con anticipación.</p>";
+            $contenido .= "<p>Gracias por confiar en nosotros. ¡Nos vemos pronto!</p>";
+            $contenido .= "<p>Atentamente,<br><strong>El equipo de BarbFlow</strong></p>";
+            $contenido .= '</html>';
+            $mail->Body = $contenido;
+    
             return $mail->send();
         } catch (\Exception $e) {
             return false;

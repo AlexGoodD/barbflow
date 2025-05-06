@@ -20,3 +20,5 @@ if (!$db) {
     echo "error de depuración: " . mysqli_connect_error();
     exit;
 }
+
+$db->query("SET time_zone = '" . ($_ENV['DB_TIMEZONE'] ?? '+00:00') . "'");

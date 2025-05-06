@@ -25,10 +25,7 @@
         <div class="cita-info" id="citas-<?php echo $cita->id; ?>">
             <div class="header-card">
                 <p>Cita <span>#<?php echo $cita->id; ?></span></p>
-                <form action="/api/eliminar" method="POST" class="form-eliminar">
-                    <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
-                    <i class="fa-solid fa-trash eliminar-icono" data-id="<?php echo $cita->id; ?>"></i>
-                </form>
+                <i class="fa-solid fa-trash eliminar-icono" data-id="<?php echo $cita->id; ?>"></i>
             </div>
             <div class="card-info">
                 <i class="fa-solid fa-calendar-days"></i>
@@ -89,3 +86,5 @@
         ?>
 </div>
 <?php endif; ?>
+
+<script type="module" src="/build/js/admin-eliminar.js"></script>

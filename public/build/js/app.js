@@ -7,13 +7,7 @@ import {
   actualizarTituloPaso,
 } from "./navegacion.js";
 
-import {
-  idCliente,
-  nombreCliente,
-  seleccionarFecha,
-  seleccionarHora,
-  agregarBotonesReservar,
-} from "./cliente.js";
+import { idCliente, nombreCliente, agregarBotonesReservar } from "./cliente.js";
 
 import { mostrarResumen } from "./resumen.js";
 
@@ -26,12 +20,7 @@ function iniciarApp() {
     paginaSiguiente(),
     paginaAnterior(),
     actualizarTituloPaso();
-  consultarAPI(),
-    idCliente(),
-    nombreCliente(),
-    seleccionarFecha(),
-    seleccionarHora(),
-    mostrarResumen();
+  consultarAPI(), idCliente(), nombreCliente(), mostrarResumen();
   agregarBotonesReservar();
 }
 export let paso = 1;

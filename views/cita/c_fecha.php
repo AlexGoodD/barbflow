@@ -1,16 +1,10 @@
-<?php include __DIR__ . '/../templates/wizard.php'; ?>
+<?php include __DIR__ . '/../templates/wizard.php'; 
+?>
 
-<form class="formulario">
-    <div class="campo">
-        <label for="fecha">Fecha</label>
-        <input id="fecha" type="date" min="<?php echo date('Y-m-d', strtotime('+1 day') ); ?>" />
-    </div>
+<div id="contenedor-horarios"></div>
 
-    <div class="campo">
-        <label for="hora">Hora</label>
-        <input id="hora" type="time" />
-    </div>
+<form class="formulario" id="hidden-form">
     <input type="hidden" id="id" value="<?php echo $id; ?>">
 </form>
 
-<script type="module" src="/public/build/js/cliente.js"></script>
+<script type="module" src="/build/js/cliente.js"></script>

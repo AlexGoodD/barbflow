@@ -9,39 +9,18 @@ import {
 import { reservarCita } from "./resumen.js";
 
 export function idCliente() {
-  cita.id = document.querySelector("#id").value;
+  const input = document.querySelector("#id");
+  if (input) {
+    cita.id = input.value;
+  }
 }
 
 export function nombreCliente() {
   cita.nombre = document.querySelector("#nombre").value;
 }
 
-export function seleccionarFecha() {
-  document.querySelector("#fecha").addEventListener("input", function (e) {
-    const t = new Date(e.target.value).getUTCDay();
-    [6, 0].includes(t)
-      ? ((e.target.value = ""),
-        mostrarHelperAlerta("Fines de semana no permitidos", "error", "#fecha"))
-      : (cita.fecha = e.target.value);
-  });
-}
-
-export function seleccionarHora() {
-  document.querySelector("#hora").addEventListener("input", function (e) {
-    const t = e.target.value.split(":")[0];
-    t < 10 || t > 18
-      ? ((e.target.value = ""),
-        mostrarHelperAlerta(
-          "Fuera del horario del establecimiento",
-          "error",
-          "#hora"
-        ))
-      : (cita.hora = e.target.value);
-  });
-}
-
 export function agregarBotonesReservar() {
-  const contenedorApp = document.querySelector("#paso-4"); // Seleccionar el contenedor principal
+  const contenedorApp = document.querySelector("#paso-5"); // Seleccionar el contenedor principal
 
   // Verificar si ya existe el contenedor de botones
   if (contenedorApp.querySelector(".cancelar-reservar")) {
@@ -96,40 +75,149 @@ export function agregarBotonesReservar() {
   contenedorApp.appendChild(contenedorBotones);
 }
 
-export function verificarDisponibilidadFechaHora() {
-  const fechaInput = document.querySelector("#fecha");
-  const horaInput = document.querySelector("#hora");
+export async function mostrarTablaHorarios() {
+  const contenedor = document.querySelector("#contenedor-horarios");
+  contenedor.innerHTML = "";
 
-  function verificarDisponibilidad() {
-    const fecha = fechaInput.value;
-    const hora = horaInput.value;
+  const fechas = generarFechas();
+  const horarios = generarHorarios();
+  const mapaOcupados = await obtenerHorariosOcupados(fechas);
 
-    if (fecha && hora) {
-      fetch("/api/verificar-disponibilidad", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ fecha, hora }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data.disponible) {
-            mostrarHelperAlerta(
-              "La fecha y hora seleccionadas ya están ocupadas. Por favor, elige otro horario.",
-              "error",
-              "#fecha"
-            );
-            fechaInput.value = "";
-            horaInput.value = "";
-          }
-        })
-        .catch(console.error("Error al verificar disponibilidad:", error));
-    }
-  }
+  const tabla = crearTablaHorarios(fechas, horarios, mapaOcupados);
+  contenedor.appendChild(tabla);
 
-  fechaInput.addEventListener("input", verificarDisponibilidad);
-  horaInput.addEventListener("input", verificarDisponibilidad);
+  asignarEventosHorarios(tabla);
 }
 
-verificarDisponibilidadFechaHora();
+// 🧩 Generar fechas siguientes (7 días desde mañana)
+function generarFechas() {
+  const fechas = [];
+  const opciones = { weekday: "long", day: "numeric" };
+  let actual = new Date();
+  actual.setDate(actual.getDate() + 1);
+
+  for (let i = 0; i < 7; i++) {
+    const copia = new Date(actual); // clona para evitar modificar el original
+    const fechaISO = formatoLocalFechaISO(copia);
+    const etiqueta = copia.toLocaleDateString("es-ES", opciones);
+    fechas.push({ fecha: fechaISO, etiqueta });
+    actual.setDate(actual.getDate() + 1); // modifica solo "actual", no las fechas ya guardadas
+  }
+
+  return fechas;
+}
+
+function formatoLocalFechaISO(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+// 🧩 Generar horarios en bloques de 30 minutos
+function generarHorarios() {
+  const horarios = [];
+  for (let h = 8; h <= 20; h++) {
+    horarios.push(`${String(h).padStart(2, "0")}:00`);
+    if (h !== 20) horarios.push(`${String(h).padStart(2, "0")}:30`);
+  }
+  return horarios;
+}
+
+// 🧩 Obtener horarios ocupados desde la API
+async function obtenerHorariosOcupados(fechas) {
+  const res = await fetch("/api/verificar-disponibilidad", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({}),
+  });
+
+  const ocupados = await res.json();
+  const mapaOcupados = {};
+
+  ocupados.forEach(({ fecha, hora }) => {
+    if (!mapaOcupados[fecha]) mapaOcupados[fecha] = {};
+    mapaOcupados[fecha][hora] = true;
+  });
+
+  return mapaOcupados;
+}
+
+// 🧩 Crear la tabla HTML de horarios
+function crearTablaHorarios(fechas, horarios, mapaOcupados) {
+  const tabla = document.createElement("TABLE");
+  tabla.classList.add("tabla-horarios");
+
+  // Encabezado
+  const thead = document.createElement("THEAD");
+  const trHead = document.createElement("TR");
+  fechas.forEach((dia) => {
+    const th = document.createElement("TH");
+    th.textContent =
+      dia.etiqueta.charAt(0).toUpperCase() + dia.etiqueta.slice(1);
+    th.classList.add("horario-encabezado");
+    trHead.appendChild(th);
+  });
+  thead.appendChild(trHead);
+  tabla.appendChild(thead);
+
+  // Cuerpo
+  const tbody = document.createElement("TBODY");
+  horarios.forEach((hora) => {
+    const fila = document.createElement("TR");
+    fechas.forEach(({ fecha }) => {
+      const td = document.createElement("TD");
+      td.classList.add("horario-celda");
+
+      const ocupado = mapaOcupados[fecha]?.[hora];
+      const boton = document.createElement("BUTTON");
+      boton.textContent = hora;
+      boton.type = "button";
+      boton.classList.add("boton-horario");
+
+      if (ocupado) {
+        boton.classList.add("ocupado");
+        boton.disabled = true;
+      }
+
+      boton.dataset.fecha = fecha;
+      boton.dataset.hora = hora;
+      td.appendChild(boton);
+      fila.appendChild(td);
+    });
+    tbody.appendChild(fila);
+  });
+
+  tabla.appendChild(tbody);
+  return tabla;
+}
+
+// 🧩 Agregar interactividad a los botones
+function asignarEventosHorarios(tabla) {
+  const botones = tabla.querySelectorAll(".boton-horario");
+
+  botones.forEach((boton) => {
+    if (boton.disabled) return;
+
+    boton.addEventListener("click", () => {
+      if (boton.classList.contains("seleccionado")) {
+        boton.classList.remove("seleccionado");
+        cita.fecha = "";
+        cita.hora = "";
+        return;
+      }
+
+      botones.forEach((b) => b.classList.remove("seleccionado"));
+
+      boton.classList.add("seleccionado");
+      cita.fecha = boton.dataset.fecha;
+      cita.hora = boton.dataset.hora;
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  idCliente();
+  nombreCliente();
+  mostrarTablaHorarios();
+});

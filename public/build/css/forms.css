@@ -84,3 +84,7 @@
 .campos-numericos .campo input {
   width: 100%;
 }
+
+#hidden-form {
+  display: none;
+}

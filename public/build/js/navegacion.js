@@ -30,7 +30,7 @@ export function botonesPaginador() {
   if (paso === 1) {
     botonAnterior.classList.add("ocultar");
     botonSiguiente.classList.remove("ocultar");
-  } else if (paso === 4) {
+  } else if (paso === 5) {
     botonAnterior.classList.remove("ocultar");
     botonSiguiente.classList.add("ocultar");
     mostrarResumen();
@@ -63,7 +63,7 @@ export function paginaSiguiente() {
 }
 
 function handlePaginaSiguiente() {
-  if (paso < 4) {
+  if (paso < 5) {
     setPaso(paso + 1);
     botonesPaginador();
   }
@@ -75,8 +75,9 @@ export function actualizarTituloPaso() {
   const titulos = {
     1: "Escoge el servicio",
     2: "Escoge una fecha",
-    3: "Confirmación de datos",
-    4: "Resumen de cita",
+    3: "Selecciona un barbero",
+    4: "Confirmación de datos",
+    5: "Resumen de cita",
   };
 
   if (titulo) {

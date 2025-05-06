@@ -1,17 +1,20 @@
-.tabla-servicios {
+.tabla-servicios,
+.tabla-horarios {
   width: 100%;
   border-collapse: collapse;
   margin-top: 2rem;
   overflow: hidden;
 }
 
-.tabla-servicios thead {
+.tabla-servicios thead,
+.tabla-horarios thead {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
-.tabla-servicios thead th {
+.tabla-servicios thead th,
+.tabla-horarios thead th {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -21,26 +24,56 @@
   font-weight: 700;
 }
 
-.tabla-servicios tbody {
+.tabla-servicios tbody,
+.tabla-horarios tbody {
   display: block;
   max-height: 400px;
   overflow-y: auto;
   border-top: 1px solid #ffffff82;
-
 }
 
-.tabla-servicios tbody tr {
+.tabla-servicios tbody tr,
+.tabla-horarios tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
-.tabla-servicios td {
+.tabla-servicios td,
+.tabla-horarios td {
   padding: 0 1rem;
   text-align: center;
   height: 7rem;
   color: #fff;
   font-size: 1.6rem;
+}
+
+.tabla-horarios .horario-celda .boton-horario {
+  background-color: transparent;
+  color: #cacaca;
+  border: 1px solid #aaaaaa;
+  width: 8.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.tabla-horarios .horario-celda .boton-horario:hover {
+  transform: scale(1.05);
+}
+
+.tabla-horarios .horario-celda .boton-horario.seleccionado {
+  color: #000000;
+  font-weight: 600;
+  border: 1px solid #aaaaaa;
+  background-color: #e6e6e6;
+}
+
+.tabla-horarios .horario-celda .boton-horario.ocupado {
+  color: #5b5b5b;
+  border: 1px solid #3f3f3f;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .tabla-servicios th:nth-child(1),
@@ -79,7 +112,6 @@
   max-height: 100%;
   overflow: hidden;
   border-top: 1px solid #ffffff82;
-
 }
 
 .encabezado-resumen {
