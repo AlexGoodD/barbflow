@@ -126,13 +126,20 @@ function generarHorarios() {
 
 // 🧩 Obtener horarios ocupados desde la API
 async function obtenerHorariosOcupados(fechas) {
+  const barberoId = cita.barberoSeleccionado?.id;
+
+  if (!barberoId) {
+    return {};
+  }
+
   const res = await fetch("/api/verificar-disponibilidad", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({}),
+    body: JSON.stringify({ barberoId }), // Enviamos el barberoId
   });
 
   const ocupados = await res.json();
+  console.error("Ocupados:", ocupados);
   const mapaOcupados = {};
 
   ocupados.forEach(({ fecha, hora }) => {

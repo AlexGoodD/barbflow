@@ -70,80 +70,74 @@ function mostrarResumenServicios(contenedor) {
 }
 
 function mostrarResumenDetalles(contenedor) {
-  const { nombre: t, fecha: o, hora: a } = cita;
+  const { nombre: cliente, fecha, hora, barberoSeleccionado } = cita;
 
   const tituloResumen = document.createElement("P");
   tituloResumen.textContent = "Detalles de tu cita";
   tituloResumen.classList.add("encabezado-resumen");
   contenedor.appendChild(tituloResumen);
 
-  // Crear contenedor para la información adicional
   const contenedorInfo = document.createElement("DIV");
   contenedorInfo.classList.add("contenedor-resumen-info");
 
   // Cliente
-  const cliente = document.createElement("P");
-  cliente.innerHTML = `<span class="info-resumen">Cliente: </span><span class="resumen-info-valor">${t}</span>`;
-  contenedorInfo.appendChild(cliente);
+  const clienteInfo = document.createElement("P");
+  clienteInfo.innerHTML = `<span class="info-resumen">Cliente: </span><span class="resumen-info-valor">${cliente}</span>`;
+  contenedorInfo.appendChild(clienteInfo);
+
+  // Barbero
+  const barberoInfo = document.createElement("P");
+  barberoInfo.innerHTML = `<span class="info-resumen">Barbero: </span><span class="resumen-info-valor">${
+    barberoSeleccionado?.nombre || "No seleccionado"
+  }</span>`;
+  contenedorInfo.appendChild(barberoInfo);
 
   // Fecha
-  const [year, month, day] = o.split("-");
-  const s = new Date(year, month - 1, day);
-
-  const m = s.toLocaleDateString("es-MX", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-  const fecha = document.createElement("P");
-  fecha.innerHTML = `<span class="info-resumen">Fecha: </span><span class="resumen-info-valor">${m}</span>`;
-  contenedorInfo.appendChild(fecha);
+  const fechaInfo = document.createElement("P");
+  fechaInfo.innerHTML = `<span class="info-resumen">Fecha: </span><span class="resumen-info-valor">${fecha}</span>`;
+  contenedorInfo.appendChild(fechaInfo);
 
   // Hora
-  const hora = document.createElement("P");
-  hora.innerHTML = `<span class="info-resumen">Hora: </span><span class="resumen-info-valor">${a} Horas</span>`;
-  contenedorInfo.appendChild(hora);
+  const horaInfo = document.createElement("P");
+  horaInfo.innerHTML = `<span class="info-resumen">Hora: </span><span class="resumen-info-valor">${hora}</span>`;
+  contenedorInfo.appendChild(horaInfo);
 
-  // Agregar contenedor de información al contenedor principal
   contenedor.appendChild(contenedorInfo);
 }
 
 export async function reservarCita() {
-  const { nombre: e, fecha: t, hora: o, servicios: a, id: n, email: m } = cita;
-  const c = a.map((e) => e.id);
-  console.warn("Cita:", cita);
-  const r = new FormData();
+  const { nombre, fecha, hora, servicios, id, email, barberoSeleccionado } =
+    cita;
+  const serviciosIds = servicios.map((servicio) => servicio.id);
 
-  r.append("fecha", t);
-  r.append("hora", o);
-  r.append("usuarioId", n);
-  r.append("email", m);
-  r.append("servicios", c);
+  const formData = new FormData();
+  formData.append("fecha", fecha);
+  formData.append("hora", hora);
+  formData.append("usuarioId", id);
+  formData.append("email", email);
+  formData.append("servicios", serviciosIds);
+  formData.append("barberoId", barberoSeleccionado?.id || ""); // Agregar barberoId
 
   try {
     const url = `${APP_URL}/api/citas`;
-    const response = await fetch(url, { method: "POST", body: r });
+    const response = await fetch(url, { method: "POST", body: formData });
     const data = await response.json();
-
-    console.log(data);
 
     if (data.resultado) {
       mostrarAlerta(
-        "¡Reservación creada con éxito!",
-        "Tu cita ha sido confirmada con éxito. Te esperamos en la fecha y hora acordadas para brindarte el mejor servicio. Si llegara a surgir algún inconveniente con tu reservación, nos pondremos en contacto contigo para mantenerte informado."
+        "Cita reservada con éxito",
+        "Se te envió un correo con la fecha y hora de tu cita"
       );
-
       setTimeout(() => {
         window.location.reload();
       }, 3000);
     }
   } catch (error) {
-    console.warn("Error reservando cita:", error);
     mostrarAlerta(
-      "Hubo un error al reservar la cita.",
-      "Por favor, intenta nuevamente más tarde."
+      "Hubo un error al reservar la cita",
+      "Por favor intenta de nuevo en un momento"
     );
+    console.error("Error al reservar la cita:", error);
   }
 }
 

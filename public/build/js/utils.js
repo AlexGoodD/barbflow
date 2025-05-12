@@ -193,6 +193,47 @@ export function validarFormularioServicios() {
   });
 }
 
+export function validarFormularioBarberos() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-barbero");
+    if (!form) return; // Asegúrate de que el formulario exista
+    console.log("Se encontro formulario", form);
+    form.addEventListener("submit", (e) => {
+      // Evita el envío por defecto
+      e.preventDefault();
+
+      // Obtener los valores de los campos
+      const nombreInput = document.querySelector("#nombre");
+      const especialidadInput = document.querySelector("#especialidad");
+
+      const nombreValor = nombreInput.value.trim();
+      const especialidadValor = especialidadInput.value.trim();
+
+      // Validar longitud máxima
+
+      if (nombreValor.length > 60) {
+        mostrarHelperAlerta(
+          "La longitud del nombre no debe exceder 60 caracteres",
+          "error",
+          "#nombre"
+        );
+        return; // Evita continuar si hay error
+      }
+
+      if (especialidadValor.length > 500) {
+        mostrarHelperAlerta(
+          "La longitud de especialidad no debe exceder 500 caracteres",
+          "error", // clase opcional para estilo
+          "#descripcion"
+        );
+        return; // Evita continuar si hay error
+      }
+      // Si pasa la validación, ahora sí puedes enviar el formulario
+      form.submit();
+    });
+  });
+}
+
 export function buttonVerMas() {
   const botonesVerMas = document.querySelectorAll(".boton-ver-mas");
 
@@ -323,29 +364,42 @@ export function carruselFotos() {
 export function adminSelectorSeccion() {
   document.addEventListener("DOMContentLoaded", function () {
     const btnCitas = document.getElementById("btn-citas");
+    const btnBarberos = document.getElementById("btn-barberos");
     const btnServicios = document.getElementById("btn-servicios");
 
-    function toggleActiveButton(activeButton, inactiveButton) {
+    function toggleActiveButton(activeButton) {
+      // Remover la clase "active" de todos los botones
+      [btnCitas, btnBarberos, btnServicios].forEach((button) => {
+        button.classList.remove("active");
+      });
+      // Agregar la clase "active" al botón activo
       activeButton.classList.add("active");
-      inactiveButton.classList.remove("active");
     }
 
     // Detectar la URL actual y activar el botón correspondiente
     const currentPath = window.location.pathname;
     if (currentPath.includes("/admin/citas")) {
-      toggleActiveButton(btnCitas, btnServicios);
+      toggleActiveButton(btnCitas);
     } else if (currentPath.includes("/admin/servicios")) {
-      toggleActiveButton(btnServicios, btnCitas);
+      toggleActiveButton(btnServicios);
+    } else if (currentPath.includes("/admin/barberos")) {
+      toggleActiveButton(btnBarberos);
     }
 
+    // Agregar eventos de clic a los botones
     btnCitas.addEventListener("click", function () {
-      toggleActiveButton(btnCitas, btnServicios);
+      toggleActiveButton(btnCitas);
       window.location.href = "/admin/citas";
     });
 
     btnServicios.addEventListener("click", function () {
-      toggleActiveButton(btnServicios, btnCitas);
+      toggleActiveButton(btnServicios);
       window.location.href = "/admin/servicios";
+    });
+
+    btnBarberos.addEventListener("click", function () {
+      toggleActiveButton(btnBarberos);
+      window.location.href = "/admin/barberos";
     });
   });
 }

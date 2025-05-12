@@ -13,6 +13,8 @@ import { mostrarResumen } from "./resumen.js";
 
 import { consultarAPI } from "./servicios.js";
 
+import { consultarBarberos } from "./barberos.js";
+
 function iniciarApp() {
   mostrarSeccion(),
     tabs(),
@@ -20,7 +22,11 @@ function iniciarApp() {
     paginaSiguiente(),
     paginaAnterior(),
     actualizarTituloPaso();
-  consultarAPI(), idCliente(), nombreCliente(), mostrarResumen();
+  consultarAPI(),
+    consultarBarberos(),
+    idCliente(),
+    nombreCliente(),
+    mostrarResumen();
   agregarBotonesReservar();
 }
 export let paso = 1;
@@ -29,7 +35,14 @@ export function setPaso(nuevoPaso) {
   paso = nuevoPaso;
 }
 
-export const cita = { id: "", nombre: "", fecha: "", hora: "", servicios: [] };
+export const cita = {
+  id: "",
+  nombre: "",
+  fecha: "",
+  hora: "",
+  servicios: [],
+  barberoSeleccionado: null,
+};
 document.addEventListener("DOMContentLoaded", function () {
   iniciarApp();
 });

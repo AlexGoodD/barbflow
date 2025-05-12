@@ -1,5 +1,6 @@
 .tabla-servicios,
-.tabla-horarios {
+.tabla-horarios,
+.tabla-barberos {
   width: 100%;
   border-collapse: collapse;
   margin-top: 2rem;
@@ -7,14 +8,16 @@
 }
 
 .tabla-servicios thead,
-.tabla-horarios thead {
+.tabla-horarios thead,
+.tabla-barberos thead {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
 .tabla-servicios thead th,
-.tabla-horarios thead th {
+.tabla-horarios thead th,
+.tabla-barberos thead th {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -25,7 +28,8 @@
 }
 
 .tabla-servicios tbody,
-.tabla-horarios tbody {
+.tabla-horarios tbody,
+.tabla-barberos tbody {
   display: block;
   max-height: 400px;
   overflow-y: auto;
@@ -33,14 +37,16 @@
 }
 
 .tabla-servicios tbody tr,
-.tabla-horarios tbody tr {
+.tabla-horarios tbody tr,
+.tabla-barberos tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
 }
 
 .tabla-servicios td,
-.tabla-horarios td {
+.tabla-horarios td,
+.tabla-barberos td {
   padding: 0 1rem;
   text-align: center;
   height: 7rem;

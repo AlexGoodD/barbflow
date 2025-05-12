@@ -41,12 +41,14 @@
 }
 
 .citas,
-.servicios {
+.servicios,
+.barberos {
   list-style: none;
   padding: 0;
 }
 
-.servicios-card {
+.servicios-card,
+.barberos-card {
   border: 2px solid #7f7f7f;
   border-radius: 1rem;
   margin-bottom: 2rem;
@@ -54,16 +56,19 @@
   box-sizing: border-box;
 }
 
-.servicios-card .servicio-info {
+.servicios-card .servicio-info,
+.barberos-card .barbero-info {
   width: 100%;
 }
 
-.servicios-card li {
+.servicios-card li,
+.barberos-card li {
   display: flex;
   justify-content: space-between;
 }
 
-.servicios-card .header-servicio-info {
+.servicios-card .header-servicio-info,
+.barberos-card .header-barbero-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,14 +78,17 @@
   height: 3rem;
 }
 
-.servicios-card .header-servicio-info .servicio-acciones {
+.servicios-card .header-servicio-info .servicio-acciones,
+.barbero-acciones {
   display: flex;
   gap: 1rem;
   margin-right: 1rem;
 }
 
-.servicios-card .header-servicio-info .servicio-acciones .eliminar-icono,
-.servicios-card .header-servicio-info .servicio-acciones .editar-icono {
+.servicio-acciones .eliminar-icono,
+.servicio-acciones .editar-icono,
+.barbero-acciones .eliminar-icono,
+.barbero-acciones .editar-icono {
   cursor: pointer;
   transition: color 0.3s ease-in-out;
   color: #7f7f7f;
@@ -88,7 +96,9 @@
 }
 
 .servicios-card .header-servicio-info .servicio-acciones .eliminar-icono:hover,
-.servicios-card .header-servicio-info .servicio-acciones .editar-icono:hover {
+.servicios-card .header-servicio-info .servicio-acciones .editar-icono:hover,
+.barberos-card .header-barbero-info .barbero-acciones .eliminar-icono:hover,
+.barberos-card .header-barbero-info .barbero-acciones .editar-icono:hover {
   cursor: pointer;
   color: #cbcbcb;
 }
@@ -115,7 +125,6 @@
   min-width: 8rem;
   max-width: fit-content;
 }
-
 .top-servicios-admin {
   display: flex;
   align-items: center;
@@ -130,7 +139,8 @@
 }
 
 #admin-section-selector #btn-citas,
-#admin-section-selector #btn-servicios {
+#admin-section-selector #btn-servicios,
+#admin-section-selector #btn-barberos {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,7 +164,8 @@
 }
 
 #admin-section-selector #btn-citas.active,
-#admin-section-selector #btn-servicios.active {
+#admin-section-selector #btn-servicios.active,
+#admin-section-selector #btn-barberos.active {
   background-color: #fff;
   color: #1c1c1c;
   font-weight: 600;

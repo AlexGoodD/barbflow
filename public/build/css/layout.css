@@ -39,7 +39,8 @@
   gap: 5.5rem;
 }
 
-.header-pagina-servicios {
+.header-pagina-servicios,
+.header-pagina-barberos {
   margin-top: 4rem;
   display: flex;
   align-items: center;

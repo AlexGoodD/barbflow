@@ -1,4 +1,17 @@
-<h2 class="seccion-admin">Buscar citas</h2>
+<h1 class="nombre-pagina">Panel de administración</h1>
+
+
+<div id="admin-section-selector">
+    <button id="btn-citas" class="boton">Citas</button>
+    <button id="btn-barberos" class="boton">Barberos</button>
+    <button id="btn-servicios" class="boton">Servicios</button>
+</div>
+
+
+<div class="top-servicios-admin">
+    <h2 class="seccion-admin">Buscar citas</h2>
+</div>
+
 <div class="busqueda">
     <form class="formulario">
         <div class="campo">
@@ -88,3 +101,13 @@
 <?php endif; ?>
 
 <script type="module" src="/build/js/admin-eliminar.js"></script>
+
+<?php
+    $script = "<script type='module'>
+    import { adminSelectorSeccion, buttonVerMas, buscadorCitas, buttonEliminarCitas } from '/build/js/utils.js';
+    adminSelectorSeccion();
+    buttonVerMas();
+    buscadorCitas();
+    buttonEliminarCitas();
+    </script>";
+?>

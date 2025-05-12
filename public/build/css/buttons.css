@@ -5,7 +5,7 @@
 .boton-instrucciones,
 .boton-recuperar,
 .boton-actualizar,
-.boton-crear-servicio {
+.boton-crear {
   background-color: var(--color-white);
   padding: 1.5rem 4rem;
   color: #454545;
@@ -25,7 +25,7 @@
 .boton-instrucciones:hover,
 .boton-recuperar:hover,
 .boton-actualizar:hover,
-.boton-crear-servicio:hover {
+.boton-crear:hover {
   background-color: #c8c8c8;
   cursor: pointer;
 }
@@ -266,16 +266,6 @@
 
 .btn-eliminar-servicio button:hover {
   color: #cbcbcb;
-}
-
-.btn-eliminar-servicio i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  font-size: 1.5rem;
-  color: white;
 }
 
 .step-move {

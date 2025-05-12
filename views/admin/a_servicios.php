@@ -2,6 +2,7 @@
 
 <div id="admin-section-selector">
     <button id="btn-citas" class="boton">Citas</button>
+    <button id="btn-barberos" class="boton">Barberos</button>
     <button id="btn-servicios" class="boton">Servicios</button>
 </div>
 
@@ -26,8 +27,8 @@
                         <!-- Icono para eliminar -->
                         <form action="/admin/servicios/eliminar" method="POST" class="btn-eliminar-servicio">
                             <input type="hidden" name="id" value="<?php echo $servicio->id; ?>">
-                            <button type="submit" class="icono-eliminar"></button>
-                            <i class="fa-solid fa-trash eliminar-icono"></i>
+                            <button type="submit" class="icono-eliminar"><i
+                                    class="fa-solid fa-trash eliminar-icono"></i></button>
                         </form>
                     </div>
                 </div>

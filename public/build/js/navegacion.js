@@ -74,8 +74,8 @@ export function actualizarTituloPaso() {
 
   const titulos = {
     1: "Escoge el servicio",
-    2: "Escoge una fecha",
-    3: "Selecciona un barbero",
+    2: "Selecciona un barbero",
+    3: "Escoge una fecha",
     4: "Confirmación de datos",
     5: "Resumen de cita",
   };

@@ -24,15 +24,25 @@ CREATE TABLE `servicios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
+CREATE TABLE `barberos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(60) NOT NULL,
+  `especialidad` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+
 CREATE TABLE `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   `usuarioId` int DEFAULT NULL,
+  `barberoId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `usuarioId` (`usuarioId`),
-  CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+  CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`barberoId`) REFERENCES `barberos` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
+
 
 CREATE TABLE `citasServicios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -48,8 +58,12 @@ CREATE TABLE `citasServicios` (
 
 -- Inserción de datos
 
+-- (La contraseña es: qwer12)
+
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
-(9, ' Juanm', 'De la torre', 'correo@correo.com', '$2y$10$9TTiKdZXQaUQaSbVKd7wPOucLusU8ebkv2h2IgqNjQXs.uLTW7CAq', '1234567890', 0, 1, '');
+(9, 'Emmanuel Alejandro', 'Chavarria Buendia', 'alejandro@gmail.com', '$2y$10$EtfPxal6BxhtnrmSPg1spOP0jQ43aAk5kiqAJSJMEq9ExSiE', '1234567890', 0, 1, ''),
+(10, 'Alejandro Emmanuel', 'Chavarria Buendia', 'alejandro1@gmail.com', '$2y$10$EtfPxal6BxhtnrmSPg1spOP0jQ43aAk5kiqAJSJMEq9ExSiE', '1234567890', 0, 1, '');
+
 
 INSERT INTO `servicios` (`id`, `nombre`, `precio`, `duracion`, `descripcion`) VALUES
 (1, 'Corte de cabello mujer', 120.00, 45, 'Corte profesional con asesoría de estilo para mujeres.'),
@@ -69,3 +83,24 @@ INSERT INTO `citas` (`id`, `fecha`, `hora`, `usuarioId`) VALUES
 
 INSERT INTO `citasServicios` (`id`, `citaId`, `servicioId`) VALUES
 (18, 22, 2);
+
+INSERT INTO `barberos` (`id`, `nombre`, `especialidad`) VALUES
+(1, 'Carlos Pérez', 'Cortes modernos y clásicos'),
+(2, 'Ana López', 'Peinados y tintes'),
+(3, 'Luis Gómez', 'Arreglo de barba y tratamientos capilares');
+
+
+-- Eliminación de tablas
+
+-- Deshabilitar las restricciones de claves foráneas temporalmente
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Eliminar las tablas en el orden correcto
+DROP TABLE IF EXISTS `citasServicios`;
+DROP TABLE IF EXISTS `citas`;
+DROP TABLE IF EXISTS `barberos`;
+DROP TABLE IF EXISTS `servicios`;
+DROP TABLE IF EXISTS `usuarios`;
+
+-- Habilitar nuevamente las restricciones de claves foráneas
+SET FOREIGN_KEY_CHECKS = 1;

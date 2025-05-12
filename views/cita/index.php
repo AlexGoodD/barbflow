@@ -16,10 +16,10 @@ $pasoActual = 1;
         <?php $pasoActual = 1; include __DIR__ . '/c_servicio.php'; ?>
     </div>
     <div id="paso-2" class="seccion">
-        <?php $pasoActual = 2; include __DIR__ . '/c_fecha.php'; ?>
+        <?php $pasoActual = 2; include __DIR__ . '/c_barbero.php'; ?>
     </div>
     <div id="paso-3" class="seccion">
-        <?php $pasoActual = 3; include __DIR__ . '/c_barbero.php'; ?>
+        <?php $pasoActual = 3; include __DIR__ . '/c_fecha.php'; ?>
     </div>
     <div id="paso-4" class="seccion">
         <?php $pasoActual = 4; include __DIR__ . '/c_contacto.php'; ?>

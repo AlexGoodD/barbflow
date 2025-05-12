@@ -59,17 +59,20 @@ a {
   color: #fff;
 }
 
-.servicios-card .servicio-info p {
+.servicios-card .servicio-info p,
+.barberos-card .barbero-info p {
   font-size: 1.7rem;
 }
 
-.servicios-card .header-servicio-info p {
+.servicios-card .header-servicio-info p,
+.barberos-card .header-barbero-info p {
   margin-left: 1rem;
   font-size: 2rem;
   font-weight: 600;
 }
 
-.servicios-card li .servicio-info .servicio-item-info-card p {
+.servicios-card li .servicio-info .servicio-item-info-card p,
+.barberos-card li .barbero-info .barbero-item-info-card p {
   color: #1c1c1c;
   font-size: 1.5rem;
   font-weight: 600;
@@ -177,13 +180,15 @@ a {
   font-size: 1.8rem;
 }
 
-.header-pagina-servicios h1 {
+.header-pagina-servicios h1,
+.header-pagina-barberos h1 {
   margin: 0;
   margin-left: auto;
   margin-right: auto;
 }
 
-.header-pagina-servicios i {
+.header-pagina-servicios i,
+.header-pagina-barberos i {
   left: 0;
   color: #fff;
   font-size: 3rem;
