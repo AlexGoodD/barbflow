@@ -11,13 +11,12 @@ use Controllers\CitaController;
 use Controllers\LoginController;
 use Controllers\ServicioController;
 use Controllers\BarberoController;
+use Controllers\HomeController;
 use MVC\Router;
 $router = new Router();
 
 // Inicio
-$router->get('/home', function() {
-    include __DIR__ . '/../views/home/home.php';
-});
+$router->get('/home', [HomeController::class, 'index']);
 
 // Mensaje de contacto (Inicio)
 $router->post('/api/enviar-mensaje', [APIController::class, 'enviarMensaje']);
