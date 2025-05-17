@@ -1,33 +1,25 @@
 <nav class="navbar">
-  <ul class="navbar-menu">
-    <div class="navbar-first">
-    <li class="navbar-item" id="navbar-item-inicio">
-      <a href="/home#inicio">Inicio</a>
-    </li>
-    <li class="navbar-item" id="navbar-item-nosotros">
-      <a href="/home#nosotros">Nosotros</a>
-    </li>
-    <li class="navbar-item" id="navbar-item-servicios">
-      <a href="/home#servicios">Servicios</a>
-    </li>
+    <div class="navbar-inner">
+        <div class="navbar-section navbar-left">
+            <a href="/home#inicio" class="navbar-item">Inicio</a>
+            <a href="/home#nosotros" class="navbar-item">Nosotros</a>
+            <a href="/home#servicios" class="navbar-item">Servicios</a>
+        </div>
+
+        <div class="navbar-logo-wrapper">
+            <img src="/build/img/Bandera.svg" alt="Bandera">
+        </div>
+
+        <div class="navbar-section navbar-right">
+            <a href="/home#precios" class="navbar-item">Precios</a>
+            <a href="/home#contacto" class="navbar-item">Contáctanos</a>
+            <a href="/" class="navbar-item cta">Reserva tu cita</a>
+        </div>
     </div>
-    <li class="navbar-item navbar-flag-item">
-      <img src="/build/img/Bandera.svg" alt="Bandera" class="navbar-flag">
-    </li>
-    <div class="navbar-second">
-    <li class="navbar-item" id="navbar-item-precios">
-      <a href="/home#precios">Precios</a>
-    </li>
-    <li class="navbar-item" id="navbar-item-contacto">
-      <a href="/home#contacto">Contacto</a>
-    </li>
-    <li class="navbar-item" id="navbar-item-reservacion">
-      <a href="/">Reserva tu cita</a>
-    </li>
-    <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-        <li class="navbar-item">
-          <a href="/logout">Cerrar sesión</a>
-        </li>
-      <?php endif; ?>
-  </ul>
+    <div
+        class="<?= $claseLogout = (isset($_SESSION['login']) && $_SESSION['login'] === true) ? 'logout-navbar-item' : 'logout-navbar-item hidden' ?>">
+        <a href="/logout" class="navbar-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </a>
+    </div>
 </nav>

@@ -407,7 +407,7 @@ export function adminSelectorSeccion() {
 export function navbarScrolling() {
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll(".helper");
-    const navLinks = document.querySelectorAll(".navbar-item a");
+    const navLinks = document.querySelectorAll(".navbar-item");
 
     const setActiveLink = () => {
       let index = sections.length;

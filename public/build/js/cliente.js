@@ -115,11 +115,17 @@ function formatoLocalFechaISO(date) {
 }
 
 // 🧩 Generar horarios en bloques de 30 minutos
+const HORARIO_INICIO = 11; // Hora de apertura (11 AM)
+const HORARIO_CIERRE = 20; // Hora de cierre (8 PM)
+const INTERVALO_MINUTOS = 60; // Minutos entre cada cita (1 hora)
+
 function generarHorarios() {
   const horarios = [];
-  for (let h = 8; h <= 20; h++) {
+  for (let h = HORARIO_INICIO; h <= HORARIO_CIERRE; h++) {
     horarios.push(`${String(h).padStart(2, "0")}:00`);
-    if (h !== 20) horarios.push(`${String(h).padStart(2, "0")}:30`);
+    if (INTERVALO_MINUTOS === 30) {
+      horarios.push(`${String(h).padStart(2, "0")}:30`);
+    }
   }
   return horarios;
 }

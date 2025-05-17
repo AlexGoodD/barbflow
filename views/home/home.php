@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/build/css/landing.css">
     <link rel="stylesheet" href="/build/css/utilities.css">
     <link rel="stylesheet" href="/build/css/components.css">
+    <script src="https://kit.fontawesome.com/23a92601dc.js" crossorigin="anonymous"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/dist/shoelace.js">
     </script>
     <link rel="stylesheet"
@@ -139,15 +140,15 @@
                     <h2>Estamos dispuestos a resolverte cualquier duda</h2>
                     <div class="contacto-info">
                         <p class="tipo">Número de telefono:</p>
-                        <p class="valor">81-####-####</p>
+                        <p class="valor">81-8303-3231</p>
                     </div>
                     <div class="contacto-info">
                         <p class="tipo">Correo electrónico:</p>
-                        <p class="valor">8thebarbers@gmail.com</p>
+                        <p class="valor">thebarbers@gmail.com</p>
                     </div>
                     <div class="contacto-info">
                         <p class="tipo">Dirección:</p>
-                        <p class="valor">Calle #, Colonia, Estado, País</p>
+                        <p class="valor">Blvd. Acapulco 800-Local 20, Plaza 1500, 67110 Guadalupe, N.L.</p>
                     </div>
                 </div>
                 <div class="info-right">

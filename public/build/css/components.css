@@ -170,75 +170,103 @@
   color: #1c1c1c;
   font-weight: 600;
 }
-
+/* General navbar styles */
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   background-color: #0f0f0f;
   padding: 1rem 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 100;
   height: 7rem;
-}
-
-.navbar-menu {
+  z-index: 100;
   display: flex;
-  list-style: none;
   justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  gap: 1rem;
 }
 
-.navbar-first,
-.navbar-second {
+/* Internal structure */
+.navbar-inner {
+  width: 80%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.navbar-first {
-  margin-left: -25.5rem;
-  margin-right: 20rem;
+/* Left and right sections */
+.navbar-section {
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  width: 50rem;
 }
 
-.navbar-second {
-  margin-right: -35rem;
+.navbar-section.navbar-left {
+  display: flex;
+  justify-content: flex-end;
 }
 
+.navbar-section.navbar-right {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: auto;
+}
+
+/* Navbar items */
 .navbar-item {
-  margin: 1rem 1.5rem;
   color: #818181;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 .navbar-item:hover {
   color: #c8c8c8;
 }
 
-#navbar-item-reservacion {
+.navbar-item.active {
   color: #fff;
-  padding: 1rem;
-  font-weight: 600;
-  background-color: #8181817d;
-  border-radius: 1rem;
+}
+
+/* CTA Button */
+.navbar-item.cta {
+  background-color: rgba(129, 129, 129, 0.49);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.6rem;
+  font-weight: bold;
   transition: background-color 0.3s ease-in-out;
 }
 
-#navbar-item-reservacion:hover {
+.navbar-item.cta:hover {
   background-color: #818181;
 }
 
-.navbar-flag-item {
+/* Center logo with triangle */
+.navbar-logo-wrapper {
   position: absolute;
-  transform: translateY(25%);
-  display: none;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar-logo-wrapper img {
+  transform: translateY(2rem);
+  height: 17rem;
+}
+
+/* Hidden logout but space preserved */
+.logout-navbar-item {
+  display: flex;
+  align-items: center;
+  width: 1rem;
+}
+.logout-navbar-item.hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .cita-card {
