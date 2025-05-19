@@ -110,13 +110,36 @@ export async function reservarCita() {
     cita;
   const serviciosIds = servicios.map((servicio) => servicio.id);
 
+  // Calcular duración total en minutos
+  const duracionTotalMin = servicios.reduce(
+    (acc, servicio) => acc + Number(servicio.duracion),
+    0
+  );
+
+  // Calcular horaFin a partir de hora + duraciónTotalMin
+  const [horaInicioH, horaInicioM] = hora.split(":").map(Number);
+  const inicio = new Date(
+    `${fecha}T${horaInicioH.toString().padStart(2, "0")}:${horaInicioM
+      .toString()
+      .padStart(2, "0")}:00`
+  );
+  const fin = new Date(inicio.getTime() + duracionTotalMin * 60000);
+
+  const horaFin = `${fin.getHours().toString().padStart(2, "0")}:${fin
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
+
+  // FormData con horaInicio y horaFin
   const formData = new FormData();
   formData.append("fecha", fecha);
-  formData.append("hora", hora);
+  formData.append("horaInicio", hora);
+  formData.append("horaFin", horaFin);
   formData.append("usuarioId", id);
   formData.append("email", email);
+  formData.append("nombre", nombre);
   formData.append("servicios", serviciosIds);
-  formData.append("barberoId", barberoSeleccionado?.id || ""); // Agregar barberoId
+  formData.append("barberoId", barberoSeleccionado?.id || "");
 
   try {
     const url = `${APP_URL}/api/citas`;

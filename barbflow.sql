@@ -34,7 +34,8 @@ CREATE TABLE `barberos` (
 CREATE TABLE `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `fecha` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
+  `horaInicio` time DEFAULT NULL,
+  `horaFin` time DEFAULT NULL,
   `usuarioId` int DEFAULT NULL,
   `barberoId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -78,8 +79,8 @@ INSERT INTO `servicios` (`id`, `nombre`, `precio`, `duracion`, `descripcion`) VA
 (10, 'Lavado de cabello', 50.00, 15, 'Lavado con masaje capilar relajante y productos nutritivos.'),
 (11, 'Tratamiento capilar', 150.00, 50, 'Tratamiento para nutrir y revitalizar el cabello dañado.');
 
-INSERT INTO `citas` (`id`, `fecha`, `hora`, `usuarioId`) VALUES
-(22, '2025-05-03', '10:30:00', 9);
+INSERT INTO `citas` (`id`, `fecha`, `horaInicio`, `horaFin`, `usuarioId`) VALUES
+(22, '2025-05-03', '10:30:00', '11:15:00', 9);
 
 INSERT INTO `citasServicios` (`id`, `citaId`, `servicioId`) VALUES
 (18, 22, 2);

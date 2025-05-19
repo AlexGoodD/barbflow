@@ -141,19 +141,46 @@ async function obtenerHorariosOcupados(fechas) {
   const res = await fetch("/api/verificar-disponibilidad", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ barberoId }), // Enviamos el barberoId
+    body: JSON.stringify({ barberoId }),
   });
 
   const ocupados = await res.json();
-  console.error("Ocupados:", ocupados);
   const mapaOcupados = {};
 
-  ocupados.forEach(({ fecha, hora }) => {
+  // Generar bloqueos en función de rangos (horaInicio → horaFin)
+  ocupados.forEach(({ fecha, horaInicio, horaFin }) => {
     if (!mapaOcupados[fecha]) mapaOcupados[fecha] = {};
-    mapaOcupados[fecha][hora] = true;
+
+    const inicio = convertirHoraAHorasYMinutos(horaInicio);
+    const fin = convertirHoraAHorasYMinutos(horaFin);
+
+    // Bloquear todos los intervalos que caen dentro del rango
+    for (
+      let h = inicio.horas, m = inicio.minutos;
+      h < fin.horas || (h === fin.horas && m < fin.minutos);
+
+    ) {
+      const horaStr = `${String(h).padStart(2, "0")}:${String(m).padStart(
+        2,
+        "0"
+      )}`;
+      mapaOcupados[fecha][horaStr] = true;
+
+      m += 30;
+      if (m >= 60) {
+        m = 0;
+        h++;
+      }
+    }
   });
 
   return mapaOcupados;
+}
+
+// Ayudante: convierte "14:30" → { horas: 14, minutos: 30 }
+function convertirHoraAHorasYMinutos(horaStr) {
+  const [horas, minutos] = horaStr.split(":").map(Number);
+  return { horas, minutos };
 }
 
 // 🧩 Crear la tabla HTML de horarios

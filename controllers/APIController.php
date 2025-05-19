@@ -45,7 +45,8 @@ class APIController {
 
     public static function guardar() {
         $fecha = $_POST['fecha'];
-        $hora = $_POST['hora'];
+        $horaInicio = $_POST['horaInicio']; // ahora usamos horaInicio
+        $horaFin = $_POST['horaFin'];       // nuevo campo horaFin
         $usuarioId = $_POST['usuarioId'];
         $barberoId = $_POST['barberoId'];
     
@@ -62,16 +63,18 @@ class APIController {
         // Crear y guardar la cita
         $cita = new Cita([
             'fecha' => $fecha,
-            'hora' => $hora,
+            'horaInicio' => $horaInicio,
+            'horaFin' => $horaFin,
             'usuarioId' => $usuarioId,
-            'barberoId' => $barberoId, // Guardar el barberoId
+            'barberoId' => $barberoId,
             'nombre' => $_POST['nombre'] ?? '',
             'email' => $_POST['email'] ?? ''
         ]);
+    
         $resultado = $cita->guardar();
         $id = $resultado['id'];
     
-        // Guardar servicios
+        // Guardar servicios asociados
         $idServicios = explode(",", $_POST['servicios']);
         foreach ($idServicios as $idServicio) {
             $args = [
@@ -84,7 +87,7 @@ class APIController {
     
         // Enviar correo de confirmación
         $emailObj = new Email($usuario->email, $usuario->nombre, '');
-        $emailEnviado = $emailObj->enviarAlertaCita($fecha, $hora);
+        $emailEnviado = $emailObj->enviarAlertaCita($fecha, $horaInicio); // puedes incluir horaFin si deseas
     
         if (!$emailEnviado) {
             echo json_encode(['resultado' => false, 'mensaje' => 'No se pudo enviar el correo de confirmación.']);
@@ -96,20 +99,21 @@ class APIController {
 
     public static function eliminar() {
         header('Content-Type: application/json');
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
             $cita = Cita::find($id);
-        
+    
             if (!$cita) {
                 http_response_code(400);
                 echo json_encode(['mensaje' => 'Cita no encontrada.']);
                 return;
             }
-        
-            $fechaHoraCita = strtotime($cita->fecha . ' ' . $cita->hora);
+    
+            // ✅ Usar horaInicio en lugar de hora
+            $fechaHoraCita = strtotime($cita->fecha . ' ' . $cita->horaInicio);
             $fechaHoraActual = time();
-        
+    
             if (empty($cita->email) || empty($cita->nombre)) {
                 $usuario = Usuario::find($cita->usuarioId);
                 if ($usuario) {
@@ -117,22 +121,23 @@ class APIController {
                     $cita->nombre = $usuario->nombre;
                 }
             }
-        
+    
             if ($fechaHoraCita < $fechaHoraActual) {
                 $cita->eliminar();
                 echo json_encode(['mensaje' => 'Cita pasada eliminada sin notificación.']);
                 return;
             }
-        
+    
+            // ✅ Enviar cancelación con horaInicio
             $emailObj = new Email($cita->email, $cita->nombre, '');
-            $emailEnviado = $emailObj->enviarAlertaCancelación($cita->fecha, $cita->hora);
-        
+            $emailEnviado = $emailObj->enviarAlertaCancelación($cita->fecha, $cita->horaInicio);
+    
             if (!$emailEnviado) {
                 http_response_code(500);
                 echo json_encode(['mensaje' => 'No se pudo enviar el correo de cancelación.']);
                 return;
             }
-        
+    
             $cita->eliminar();
             echo json_encode(['mensaje' => 'Cita eliminada y se notificó al cliente.']);
         }
@@ -182,10 +187,22 @@ class APIController {
     
             $db = Cita::getDB();
     
-            // ✅ Caso 1: Verificar una fecha y hora específicos para un barbero
+            // ✅ Caso 1: Verificar si existe conflicto en una fecha/hora específica
             if ($fecha && $hora && $barberoId) {
-                $stmt = $db->prepare("SELECT id FROM citas WHERE fecha = ? AND hora = ? AND barberoId = ? LIMIT 1");
-                $stmt->bind_param("ssi", $fecha, $hora, $barberoId);
+                // Buscar traslapes en vez de igualdad exacta
+                $stmt = $db->prepare("
+                    SELECT id FROM citas 
+                    WHERE fecha = ? 
+                    AND barberoId = ? 
+                    AND (
+                        (? >= horaInicio AND ? < horaFin)
+                        OR
+                        (? < horaInicio AND ADDTIME(?, '00:30:00') > horaInicio)
+                    )
+                    LIMIT 1
+                ");
+                // Nota: Se evalúa si el inicio propuesto cae dentro de una cita existente
+                $stmt->bind_param("sissss", $fecha, $barberoId, $hora, $hora, $hora, $hora);
                 $stmt->execute();
                 $stmt->store_result();
     
@@ -193,7 +210,7 @@ class APIController {
                 return;
             }
     
-            // ✅ Caso 2: Obtener todas las citas ocupadas para un barbero específico en los próximos 7 días
+            // ✅ Caso 2: Obtener todas las citas ocupadas para los próximos 7 días
             $diaActual = new \DateTime();
             $diaActual->modify('+1 day');
             $fechas = [];
@@ -209,9 +226,8 @@ class APIController {
             }
     
             $fechasIn = "'" . implode("','", $fechas) . "'";
-            $query = "SELECT fecha, hora FROM citas WHERE fecha IN ($fechasIn)";
-            
-            // ✅ Aplicar filtro de barbero si se envió
+            $query = "SELECT fecha, horaInicio, horaFin FROM citas WHERE fecha IN ($fechasIn)";
+    
             if ($barberoId) {
                 $query .= " AND barberoId = " . intval($barberoId);
             }
@@ -221,8 +237,11 @@ class APIController {
     
             if ($consulta) {
                 while ($fila = $consulta->fetch_assoc()) {
-                    $fila['hora'] = substr($fila['hora'], 0, 5); // recortar segundos
-                    $resultado[] = $fila;
+                    $resultado[] = [
+                        'fecha' => $fila['fecha'],
+                        'horaInicio' => substr($fila['horaInicio'], 0, 5),
+                        'horaFin' => substr($fila['horaFin'], 0, 5),
+                    ];
                 }
             }
     

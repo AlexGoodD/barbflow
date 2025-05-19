@@ -39,7 +39,8 @@ export const cita = {
   id: "",
   nombre: "",
   fecha: "",
-  hora: "",
+  horaInicio: "",
+  horaFin: "",
   servicios: [],
   barberoSeleccionado: null,
 };
