@@ -7,7 +7,7 @@ class AdminCita extends ActiveRecord {
     protected static $columnasDB = ['id', 'hora', 'cliente', 'email', 'telefono', 'servicio', 'precio'];
 
     public $id;
-    public $hora;
+    public $horaInicio;
     public $cliente;
     public $email;
     public $telefono;
@@ -17,7 +17,7 @@ class AdminCita extends ActiveRecord {
     public function __construct()
     {
         $this->id = $args['id'] ?? null;
-        $this->hora = $args['hora'] ?? '';
+        $this->horaInicio = $args['horaInicio'] ?? '';
         $this->cliente = $args['cliente'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->telefono = $args['telefono'] ?? '';

@@ -46,7 +46,7 @@
             </div>
             <div class="card-info">
                 <i class="fa-solid fa-clock"></i>
-                <p><?php echo date('h:i a', strtotime($cita->hora)); ?></p>
+                <p><?php echo date('h:i a', strtotime($cita->horaInicio)); ?></p>
             </div>
             <div class="card-info">
                 <i class="fa-solid fa-user"></i>
